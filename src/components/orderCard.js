@@ -6,7 +6,7 @@ import colors from '../styles/colors/colors';
 
 import text from '../styles/textStyles';
 
-const ActiveOrders = () => {
+const NumsOfActiveOrders = () => {
 
     const {width, height} = useWindowDimensions();
 
@@ -33,7 +33,7 @@ const ActiveOrders = () => {
                </View>
                <View style={{alignItems : 'center', justifyContent : 'space-evenly'}}>
                     <Text style={[text.smallExtraBold,{fontSize : width * 0.05 , marginTop : height * 0.01}]}>13</Text>
-                    <Text style={[text.small,{fontSize: 16, color: '#666',letterSpacing : 1, }]}>Active Orders</Text>
+                    <Text style={[text.small,{fontSize: 16, color: '#666',letterSpacing : 1, marginTop : height * 0.025}]}>Active Orders</Text>
                </View>
             </View>
           </View>
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default ActiveOrders;
+export default NumsOfActiveOrders;

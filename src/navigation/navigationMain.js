@@ -5,6 +5,7 @@ import Splash from '../screens/splashScr';
 import Onboard from '../screens/onboardingScr';
 import LoginPage from '../screens/loginPage';
 import SignUp from '../screens/signUpPage';
+import HomePage from '../screens/homePage';
 
 const Stack = createStackNavigator();
 
@@ -27,6 +28,17 @@ export default function NavigationMain() {
         component={LoginPage}
         options={{ headerShown: false }}
       />
+      <Stack.Screen
+        name="SignUp"
+        component={SignUp}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="HomePage"
+        component={HomePage}
+        options={{ headerShown: false }}  
+      />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

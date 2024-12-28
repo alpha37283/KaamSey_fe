@@ -6,7 +6,7 @@ import colors from '../styles/colors/colors';
 
 import text from '../styles/textStyles';
 
-const IncomeCard = () => {
+const IncomeOrders = () => {
 
     const {width, height} = useWindowDimensions();
 
@@ -32,8 +32,8 @@ const IncomeCard = () => {
                     <Image source={require('../../assets/icons/logoIncome.png')} style={{width : width * 0.25,  height : height * 0.12, }}/>
                </View>
                <View style={{alignItems : 'center', justifyContent : 'space-evenly'}}>
-                    <Text style={[text.smallExtraBold,{fontSize : width * 0.05 , marginTop : height * 0.01}]}>$2,409</Text>
-                    <Text style={[text.small,{fontSize: 16, color: '#666',letterSpacing : 1, }]}>Income</Text>
+                    <Text style={[text.smallExtraBold,{fontSize : width * 0.05 , marginTop : height * 0.01}]}>13</Text>
+                    <Text style={[text.small,{fontSize: 16, color: '#666',letterSpacing : 1, marginTop : height * 0.025}]}>Income</Text>
                </View>
             </View>
           </View>
@@ -71,4 +71,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default IncomeCard
+export default IncomeOrders;

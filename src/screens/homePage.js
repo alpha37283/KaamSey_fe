@@ -1,19 +1,50 @@
 import React from 'react';
-import { View, Text, Image, useWindowDimensions } from 'react-native';
+import { View, Text, Image, useWindowDimensions, ScrollView } from 'react-native';
 import EarningCard from '../components/earningCard';
 import IncomeCard from '../components/incomeCard';
-import ActiveOrders from '../components/orderCard';
 import TotalOrder from '../components/totalOrderCard';
 import text from '../styles/textStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../styles/colors/colors';
-
+import NumsOfActiveOrders from '../components/orderCard';
+import ActiveOrders from '../components/activeOrders';
 
 function HomePage() {
 
+  const activeOrdersData = [
+    {
+      serName : 'Plumber',
+      price : 45,
+      address : 'I8/4 Islamabad',
+      rating : 4.7,
+      std : 7380,
+    },
+    {
+      serName : 'Electrician',
+      price : 45,
+      address : 'I8/4 Islamabad',
+      rating : 4.7,
+      std : 7380,
+    },
+    {
+      serName : 'Painter',
+      price : 45,
+      address : 'I8/4 Islamabad',
+      rating : 4.7,
+      std : 7380,
+    },
+    {
+      serName : 'Plumber',
+      price : 45,
+      address : 'I8/4 Islamabad',
+      rating : 4.7,
+      std : 7380,
+    },
+  ]
   const {width, height} = useWindowDimensions();
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff',justifyContent : 'center'}}>
+    <ScrollView>
     <View >
       <Image source={require('../../assets/images/eclips4.png')} style={{ position: 'absolute', left: width * 0.5, top: 0, width: width * 0.5, height: height * 0.21,  }} />
     </View>
@@ -28,20 +59,23 @@ function HomePage() {
         </View>
       </View>
     </View>
-  
-    {/* Earnings Card */}
+    <EarningCard />
+          
+    <View style={{flexDirection : 'row'}}>
+      <IncomeCard/> 
+      <NumsOfActiveOrders/>
+    </View>
+    <TotalOrder/>
+
+    <View>
+      <Text style={[text.mediumExtraBold,{marginLeft : width * 0.05}]}>Active Orders</Text>
+      <ActiveOrders data = {activeOrdersData}/>
+     
+
+    </View>
     
-      <EarningCard />
       
-      
-<View style={{flexDirection : 'row'}}>
-  <IncomeCard/> 
-  <ActiveOrders/>
-</View>
-<TotalOrder/>
-    
-      
-    
+    </ScrollView>
   </SafeAreaView>
   
   );

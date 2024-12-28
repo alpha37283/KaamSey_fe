@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, useWindowDimensions, Image, TouchableOpacity, Pressable,TextInput, Touchable, SafeAreaView} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import { Divider } from 'react-native-elements';
 import text from '../styles/textStyles';
+
+import apiConnections from '../../apis/apiConnections';
 
 import {useFonts} from 'expo-font';   
 
@@ -11,8 +13,25 @@ import colors from '../styles/colors/colors';
 
 
 
-export default function LoginPage() {
+const {loginSeller} = apiConnections;
+
+export default function LoginPage({navigation}) {
     const {width, height} = useWindowDimensions();
+
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+
+    const handleLogin = async () => {
+        let isSuccess = false; // Use `let` instead of `const`
+        isSuccess = await loginSeller(email, password, navigation);
+        console.log('Working1');
+        if (isSuccess) {
+            console.log('Working');
+            navigation.navigate('HomePage');
+        }
+    };
+
 
     const [fontsLoaded] = useFonts({
         'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
@@ -20,6 +39,7 @@ export default function LoginPage() {
     if (!fontsLoaded) {
         return null;
     }
+
   return (
 <SafeAreaView style={{flex: 1, backgroundColor: 'white'}} >
     <View style={{flex: 1, justifyContent : 'flex-start'}} >
@@ -62,18 +82,26 @@ export default function LoginPage() {
                     style={[{ height : 35,borderBottomWidth: 0.8,borderBottomColor: 'black' }]}
                     keyboardType="email-address"
                     autoCapitalize="none"
+                    blurOnSubmit={false}
+                    value={email}
+                    onChangeText={setEmail}
                 />
                 <Text style={[text.small,{marginTop: height * 0.02}]}>Password</Text>
                 <TextInput
                     style={[{height : 35, borderBottomWidth: 0.8,borderBottomColor: 'black' ,paddingHorizontal: 1  }]}
                     secureTextEntry
+                    returnKeyType="next"
+                    blurOnSubmit={false}
+                    value={password}
+                    onChangeText={setPassword}
                 />
         </View>
 
 
 
         <View style={{marginTop: width * 0.4, justifyContent : 'center', alignItems : 'center'}} >
-            <TouchableOpacity style={[{width : width * 0.8, height : height * 0.06, borderRadius : width * 0.1, justifyContent:'center',}]} >
+            <TouchableOpacity style={[{width : width * 0.8, height : height * 0.06, borderRadius : width * 0.1, justifyContent:'center',}]} 
+                onPress={handleLogin}>
                 <LinearGradient
                 colors={[colors.primary, colors.secondary]}
                 start={{ x: 0, y: 0 }}
@@ -83,7 +111,7 @@ export default function LoginPage() {
                 <Text style={[text.smallBold,{ textAlign: 'center', color : '#FFFFFF', letterSpacing : 1}]}>Login</Text>
                 </LinearGradient>
             </TouchableOpacity>
-            <TouchableOpacity style={{marginTop:height * 0.01, alignItems : 'center'}}>
+            <TouchableOpacity style={{marginTop:height * 0.01, alignItems : 'center'}} onPress={() => navigation.navigate('SignUp')}>
                 <Text style={[text.small]}>Forget Password</Text>
             </TouchableOpacity>
         </View>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View, Text, StyleSheet, useWindowDimensions, Image, TouchableOpacity, Pressable,TextInput, Touchable, SafeAreaView} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import { Divider } from 'react-native-elements';
@@ -8,11 +8,35 @@ import {useFonts} from 'expo-font';
 
 import colors from '../styles/colors/colors';
 
+import apiConnections from '../../apis/apiConnections';
 
+const {signUpSeller} = apiConnections;
 
-
-export default function SignUp() {
+export default function SignUp({navigation}) {
     const {width, height} = useWindowDimensions();
+
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+
+
+    const handleSignUp = () => {
+        console.log(name, email, password, confirmPassword);
+
+        if(password != confirmPassword)
+        {
+            console.log('Password not matched');
+            return ;
+        }
+
+        signUpSeller(name, email, password, navigation);
+        
+
+
+
+    }
+
 
     const [fontsLoaded] = useFonts({
         'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
@@ -40,29 +64,39 @@ export default function SignUp() {
                     style={[{ height : 40,borderBottomWidth: 0.8,borderBottomColor: 'black' }]}
                     keyboardType="additional-name"
                     autoCapitalize="none"
+                    value={name}
+                    onChangeText={setName}
+
                 />
                 <Text style={[text.small, {marginTop : height * 0.02}]}>Your Email</Text>
                 <TextInput
                     style={[{ height : 40,borderBottomWidth: 0.8,borderBottomColor: 'black' }]}
                     keyboardType="email-address"
                     autoCapitalize="none"
+                    value={email}
+                    onChangeText={setEmail}
                 />
                 <Text style={[text.small, {marginTop : height * 0.02}]}>Set Password</Text>
                 <TextInput
                     style={[{height : 40, borderBottomWidth: 0.8,borderBottomColor: 'black' ,paddingHorizontal: 1  }]}
                     secureTextEntry
+                    value={password}
+                    onChangeText={setPassword}
                 />
                 <Text style={[text.small, {marginTop : height * 0.02}]}>Confirm Password</Text>
                 <TextInput
                     style={[{height : 40, borderBottomWidth: 0.8,borderBottomColor: 'black' ,paddingHorizontal: 1  }]}
                     secureTextEntry
+                    value={confirmPassword}
+                    onChangeText={setConfirmPassword}
                 />
         </View>
 
 
 
         <View style={{marginTop: width * 0.4, justifyContent : 'center', alignItems : 'center'}} >
-            <TouchableOpacity style={[{width : width * 0.8, height : height * 0.06, borderRadius : width * 0.1, justifyContent:'center',}]} >
+            <TouchableOpacity style={[{width : width * 0.8, height : height * 0.06, borderRadius : width * 0.1, justifyContent:'center',}]} 
+                onPress={handleSignUp}>
                 <LinearGradient
                 colors={[colors.primary, colors.secondary]}
                 start={{ x: 0, y: 0 }}

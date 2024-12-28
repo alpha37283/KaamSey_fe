@@ -10,15 +10,14 @@ import OrderCard from './src/screens/homePage';
 import EarningCard from './src/components/earningCard';
 import TotalOrder from './src/components/totalOrderCard';
 import IncomeCard from './src/components/incomeCard';
-import ActiveOrders from './src/components/orderCard';
 import HomePage from './src/screens/homePage';
+import ActiveOrders from './src/components/activeOrders';
 
 function App() {
   return (
     
-  <HomePage/>
-    
-    
+    <HomePage/>
+  
   );
 }
 
