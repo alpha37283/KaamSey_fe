@@ -29,11 +29,11 @@ const IncomeOrders = () => {
           <View style={{flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center',marginBottom: 16,}}>  
             <View style={{ alignItems: 'center', padding : 15, justifyContent : 'center', marginLeft : width * 0.03 }}>
                <View style={{flexDirection: 'row', alignItems: 'center',}}>
-                    <Image source={require('../../assets/icons/logoIncome.png')} style={{width : width * 0.25,  height : height * 0.12, }}/>
+                    <Image source={require('../../assets/icons/logoIncome.png')} style={{width : width * 0.25,  height : height * 0.13, }}/>
                </View>
                <View style={{alignItems : 'center', justifyContent : 'space-evenly'}}>
                     <Text style={[text.smallExtraBold,{fontSize : width * 0.05 , marginTop : height * 0.01}]}>13</Text>
-                    <Text style={[text.small,{fontSize: 16, color: '#666',letterSpacing : 1, marginTop : height * 0.025}]}>Income</Text>
+                    <Text style={[text.small,{fontSize: 16, color: '#666',letterSpacing : 1, marginTop : height * 0.04}]}>Income</Text>
                </View>
             </View>
           </View>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderColor : 'black',
     padding: 0,
     shadowColor: '#000',
-    shadowOpacity: 0.5,
+    shadowOpacity: 0,
     shadowRadius: 5,
     elevation: 3,
   },

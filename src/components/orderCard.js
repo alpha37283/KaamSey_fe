@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     borderColor : 'black',
     padding: 0,
     shadowColor: '#000',
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.1,
     shadowRadius: 5,
     elevation: 3,
   },

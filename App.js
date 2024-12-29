@@ -12,11 +12,12 @@ import TotalOrder from './src/components/totalOrderCard';
 import IncomeCard from './src/components/incomeCard';
 import HomePage from './src/screens/homePage';
 import ActiveOrders from './src/components/activeOrders';
+import FetchData from './apis/checking';
 
 function App() {
   return (
     
-    <HomePage/>
+    <NavigationMain/>
   
   );
 }

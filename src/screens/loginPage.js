@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, useWindowDimensions, Image, TouchableOpacity, Pressable,TextInput, Touchable, SafeAreaView} from 'react-native';
+import { View, Text, StyleSheet, useWindowDimensions, Image, TouchableOpacity, Pressable,TextInput, Touchable, SafeAreaView, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import { Divider } from 'react-native-elements';
 import text from '../styles/textStyles';
@@ -9,7 +9,6 @@ import apiConnections from '../../apis/apiConnections';
 import {useFonts} from 'expo-font';   
 
 import colors from '../styles/colors/colors';
-
 
 
 
@@ -23,11 +22,9 @@ export default function LoginPage({navigation}) {
 
 
     const handleLogin = async () => {
-        let isSuccess = false; // Use `let` instead of `const`
+        let isSuccess = false; 
         isSuccess = await loginSeller(email, password, navigation);
-        console.log('Working1');
         if (isSuccess) {
-            console.log('Working');
             navigation.navigate('HomePage');
         }
     };
@@ -41,6 +38,7 @@ export default function LoginPage({navigation}) {
     }
 
   return (
+<TouchableWithoutFeedback onPress={Keyboard.dismiss}>
 <SafeAreaView style={{flex: 1, backgroundColor: 'white'}} >
     <View style={{flex: 1, justifyContent : 'flex-start'}} >
         <View style={{alignItems: 'center', flexDirection : 'row', justifyContent: 'center'}} >
@@ -115,10 +113,10 @@ export default function LoginPage({navigation}) {
                 <Text style={[text.small]}>Forget Password</Text>
             </TouchableOpacity>
         </View>
-
-
     </View>
 </SafeAreaView>
+</TouchableWithoutFeedback>
+
 
   );
 }

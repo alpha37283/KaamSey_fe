@@ -1,3 +1,6 @@
+import userDataStore from "../asyncStorage/userDataStore";
+const {storeAsyncData} = userDataStore;
+import {LOCAL_HOST} from '@env';
 
 const signUpSeller = async (name, email, password) => {
 
@@ -11,7 +14,7 @@ const signUpSeller = async (name, email, password) => {
   
   
       try {
-        const response = await fetch('http://192.168.1.110:5000/api/sellers/register', {
+        const response = await fetch(`http://${LOCAL_HOST}/api/sellers/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -43,7 +46,6 @@ const signUpSeller = async (name, email, password) => {
   
       console.log(email,password);
   
-  
       if(email == '' || password == '')
       {
           console.log('Empty field detected!!!')
@@ -52,7 +54,7 @@ const signUpSeller = async (name, email, password) => {
   
       try {
 
-        const response = await fetch('http://192.168.1.110:5000/api/sellers/login', {
+        const response = await fetch(`http://${LOCAL_HOST}/api/sellers/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -65,6 +67,8 @@ const signUpSeller = async (name, email, password) => {
         if (data.success) {
 
           console.log('Success Login successful');
+          storeAsyncData('user_id', data.seller._id); // user's id is being stored as he logs in 
+          console.log
           return true;
 
         } else {
@@ -79,5 +83,6 @@ const signUpSeller = async (name, email, password) => {
         return false;
       }
     };
-  
-  export default {loginSeller, signUpSeller};
+
+
+export default {loginSeller, signUpSeller};

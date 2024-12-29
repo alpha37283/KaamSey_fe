@@ -43,16 +43,16 @@ function HomePage() {
   ]
   const {width, height} = useWindowDimensions();
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: '#fff',justifyContent : 'center'}}>
+    
     <ScrollView>
     <View >
-      <Image source={require('../../assets/images/eclips4.png')} style={{ position: 'absolute', left: width * 0.5, top: 0, width: width * 0.5, height: height * 0.21,  }} />
+      <Image source={require('../../assets/images/eclips4.png')} style={{ position: 'absolute', left: width * 0.5, top: 0, width: width * 0.6, height: height * 0.21,  }} />
     </View>
-    <View style={{ marginTop: height * 0.05, paddingHorizontal: 20, marginTop : height * 0.01 }}>
+    <View style={{ marginTop: height * 0.05, paddingHorizontal: 20, marginTop : height * 0.04 }}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', }}>
         <View>
           <Text style={[text.mediumExtraBold,{ fontSize: width * 0.08,  color: '#000' }]}>Atif,</Text>
-          <Text style={[text.mediumExtraBold,{ fontSize: width * 0.08, color: '#4CAF50', marginTop : width * 0.001 }]}>Welcome Back</Text>
+          <Text style={[text.mediumExtraBold,{ fontSize: width * 0.08, color: '#4CAF50', marginTop : width * -0.01 }]}>Welcome Back</Text>
         </View>
         <View style={{ backgroundColor : '#ffffff', borderRadius : width * 0.2, width : width * 0.12, height : width * 0.12, justifyContent : 'center', alignItems : 'center' }}>
           <Image source={require('../../assets/icons/icnSearch.png')} style={{ width: width * 0.08, height: width * 0.08 }} />
@@ -76,7 +76,7 @@ function HomePage() {
     
       
     </ScrollView>
-  </SafeAreaView>
+  
   
   );
 }
