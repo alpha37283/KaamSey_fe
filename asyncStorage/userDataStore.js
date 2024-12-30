@@ -30,10 +30,20 @@ const storeAsyncData = async (key, value) => {
 };
 
 
+const clearAllData = async () => {
+  try {
+    await AsyncStorage.clear();
+    console.log('All data cleared from AsyncStorage');
+  } catch (error) {
+    console.error('Error clearing AsyncStorage:', error);
+  }
+};
 
 
 
- export default {storeAsyncData, getData};
+
+
+ export default {storeAsyncData, getData, clearAllData};
 
 
 

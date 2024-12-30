@@ -6,7 +6,7 @@ import colors from '../styles/colors/colors';
 
 import text from '../styles/textStyles';
 
-const NumsOfActiveOrders = () => {
+const NumsOfActiveOrders = ({activeOrders}) => {
 
     const {width, height} = useWindowDimensions();
 
@@ -32,7 +32,7 @@ const NumsOfActiveOrders = () => {
                     <Image source={require('../../assets/icons/logoOrders.png')} style={{width : width * 0.25,  height : height * 0.12, }}/>
                </View>
                <View style={{alignItems : 'center', justifyContent : 'space-evenly'}}>
-                    <Text style={[text.smallExtraBold,{fontSize : width * 0.05 , marginTop : height * 0.01}]}>13</Text>
+                    <Text style={[text.smallExtraBold,{fontSize : width * 0.05 , marginTop : height * 0.01}]}>{activeOrders}</Text>
                     <Text style={[text.small,{fontSize: 16, color: '#666',letterSpacing : 1, marginTop : height * 0.025}]}>Active Orders</Text>
                </View>
             </View>

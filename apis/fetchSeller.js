@@ -6,7 +6,7 @@ const getSellerAndStore = async () => {
 
     try {
         const _id = await getData('user_id'); 
-        console.log('Id from fetch seller : ', _id)
+        console.log('Id from fetch seller => ', _id)
         if (!_id) {
             throw new Error('User ID is undefined or null');
         }
@@ -27,6 +27,7 @@ const getSellerAndStore = async () => {
         
         try{
             await storeAsyncData('seller', sellerInfo);
+           
         }
         catch(e)
         {
@@ -44,7 +45,7 @@ const getSellerAndStore = async () => {
 const getServicesAndStore = async () => {
     try {
         const _id = await getData('user_id'); 
-        console.log('Id from fetch seller : ', _id)
+        console.log('Id from fetch seller => ', _id)
         if (!_id) {
             throw new Error('User ID is undefined or null');
         }
@@ -66,6 +67,8 @@ const getServicesAndStore = async () => {
         try
         {
             await storeAsyncData('services', services);
+          
+            
         }
         catch(e)
         {

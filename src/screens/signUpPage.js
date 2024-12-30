@@ -31,9 +31,6 @@ export default function SignUp({navigation}) {
         }
 
         signUpSeller(name, email, password, navigation);
-        
-
-
 
     }
 
@@ -90,6 +87,11 @@ export default function SignUp({navigation}) {
                     value={confirmPassword}
                     onChangeText={setConfirmPassword}
                 />
+                <View style={{alignItems : 'flex-end', marginTop : height * 0.01}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate('LoginPage')}}>
+                        <Text>Already have an Account?</Text>
+                    </TouchableOpacity>
+                </View>
         </View>
 
 
@@ -105,9 +107,6 @@ export default function SignUp({navigation}) {
                 >
                 <Text style={[text.smallBold,{ textAlign: 'center', color : '#FFFFFF', letterSpacing : 1}]}>Sign Up</Text>
                 </LinearGradient>
-            </TouchableOpacity>
-            <TouchableOpacity style={{marginTop:height * 0.01, alignItems : 'center'}}>
-                <Text style={[text.small]}>Forget Password</Text>
             </TouchableOpacity>
         </View>
 

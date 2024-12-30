@@ -6,7 +6,7 @@ import colors from '../styles/colors/colors';
 
 import text from '../styles/textStyles';
 
-const EarningCard = () => {
+const EarningCard = ({totalIncome}) => {
 
     const {width, height} = useWindowDimensions();
 
@@ -31,7 +31,7 @@ const EarningCard = () => {
         </View>
         <View style={{flex : 1, alignItems : 'center',justifyContent : 'space-evenly'}}>
              <Text style={[text.small,{fontSize: 14, color: '#666',letterSpacing : 1}]}>Total Earning</Text>
-             <Text style={[text.smallExtraBold,{fontSize : 30 ,marginBottom: 1,}]}>$1,505</Text>
+             <Text style={[text.smallExtraBold,{fontSize : 30 ,marginBottom: 1,}]}>${totalIncome}</Text>
         </View>
       </View>
     </View>

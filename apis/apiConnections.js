@@ -1,6 +1,9 @@
 import userDataStore from "../asyncStorage/userDataStore";
-const {storeAsyncData} = userDataStore;
+const {storeAsyncData, clearAllData} = userDataStore;
 import {LOCAL_HOST} from '@env';
+import fetchSeller from "./fetchSeller";
+const {getSellerAndStore , getServicesAndStore, } = fetchSeller;
+
 
 const signUpSeller = async (name, email, password) => {
 
@@ -14,6 +17,8 @@ const signUpSeller = async (name, email, password) => {
   
   
       try {
+        
+
         const response = await fetch(`http://${LOCAL_HOST}/api/sellers/register`, {
           method: 'POST',
           headers: {
@@ -43,7 +48,7 @@ const signUpSeller = async (name, email, password) => {
 
   
   const loginSeller = async (email, password) => {
-  
+      
       console.log(email,password);
   
       if(email == '' || password == '')
@@ -63,11 +68,14 @@ const signUpSeller = async (name, email, password) => {
         });
   
         const data = await response.json();
+
   
         if (data.success) {
 
           console.log('Success Login successful');
-          storeAsyncData('user_id', data.seller._id); // user's id is being stored as he logs in 
+          storeAsyncData('user_id', data.seller._id);
+          getSellerAndStore();
+          getServicesAndStore();
           console.log
           return true;
 

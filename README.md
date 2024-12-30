@@ -16,3 +16,5 @@ things are getting too cofusing . . . . .
 we have login page => on login is handled using apiConnections which stores seller_id in asyncStorage => while fetching seller and services => we are using seller's id then store that data on asyn Storage
 
 - Now what i have to do is set up home page for the given data from asyncStorage then the home page will be completed . . . .
+
+# b : clear All data issue

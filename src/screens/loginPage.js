@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, useWindowDimensions, Image, TouchableOpacity, Pressable,TextInput, Touchable, SafeAreaView, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import { Divider } from 'react-native-elements';
 import text from '../styles/textStyles';
-
 import apiConnections from '../../apis/apiConnections';
 
 import {useFonts} from 'expo-font';   
@@ -14,8 +13,13 @@ import colors from '../styles/colors/colors';
 
 const {loginSeller} = apiConnections;
 
+
 export default function LoginPage({navigation}) {
+
     const {width, height} = useWindowDimensions();
+    
+    
+    
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -93,7 +97,15 @@ export default function LoginPage({navigation}) {
                     value={password}
                     onChangeText={setPassword}
                 />
+                <View style={{alignItems : 'flex-end', marginTop : height * 0.01}}>
+                    <TouchableOpacity onPress={() => {navigation.navigate('SignUp')}}>
+                        <Text>Don't have an Account?</Text>
+                    </TouchableOpacity>
+                </View>
+
         </View>
+
+        
 
 
 

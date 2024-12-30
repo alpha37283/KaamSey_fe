@@ -43,7 +43,7 @@ const ActiveOrders = ({data}) => {
                     <View key={index} style={{ justifyContent : 'space-around'}}>
                         <View style={{flexDirection : 'row', justifyContent : 'space-between'}}>
                             <Text style={text.mediumBold}>
-                              {order.serName}
+                              {order.buyerName} | {order.serviceRequested}
                             </Text>
                             <Text style={[text.mediumBold, {color : colors.primary}]}>
                               ${order.price}
@@ -56,13 +56,8 @@ const ActiveOrders = ({data}) => {
                             </Text>
                           </View>
                           <View style={{flexDirection : 'row'}}>
-                            <View style={{flexDirection : 'row', justifyContent : 'space-between', alignItems : 'center',  width : width * 0.1 }} >
-                              <Image source={require('../../assets/icons/icnStar.png')} style={{width : width * 0.04, height : height * 0.02, }}/>
-                              <Text>{order.rating}</Text>
-                            </View>
                             <View style={{flexDirection : 'row'}}>
-                              <Text> | </Text>
-                              <Text>{order.std}</Text>
+                              <Text>{order.status}</Text>
                             </View>
                           </View>
                         </View>

@@ -6,7 +6,7 @@ import colors from '../styles/colors/colors';
 
 import text from '../styles/textStyles';
 
-const IncomeOrders = () => {
+const IncomeOrders = ({monthlyIncome}) => {
 
     const {width, height} = useWindowDimensions();
 
@@ -29,11 +29,11 @@ const IncomeOrders = () => {
           <View style={{flexDirection: 'row',justifyContent: 'space-between',alignItems: 'center',marginBottom: 16,}}>  
             <View style={{ alignItems: 'center', padding : 15, justifyContent : 'center', marginLeft : width * 0.03 }}>
                <View style={{flexDirection: 'row', alignItems: 'center',}}>
-                    <Image source={require('../../assets/icons/logoIncome.png')} style={{width : width * 0.25,  height : height * 0.13, }}/>
+                    <Image source={require('../../assets/icons/logoIncome.png')} style={{width : width * 0.25,  height : height * 0.11, }}/>
                </View>
                <View style={{alignItems : 'center', justifyContent : 'space-evenly'}}>
-                    <Text style={[text.smallExtraBold,{fontSize : width * 0.05 , marginTop : height * 0.01}]}>13</Text>
-                    <Text style={[text.small,{fontSize: 16, color: '#666',letterSpacing : 1, marginTop : height * 0.04}]}>Income</Text>
+                    <Text style={[text.smallExtraBold,{fontSize : width * 0.05 , marginTop : height * 0.04}]}>${monthlyIncome}</Text>
+                    <Text style={[text.small,{fontSize: 16, color: '#666',letterSpacing : 1, marginTop : height * 0.03}]}>Income</Text>
                </View>
             </View>
           </View>

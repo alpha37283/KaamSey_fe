@@ -6,7 +6,7 @@ import colors from '../styles/colors/colors';
 
 import text from '../styles/textStyles';
 
-const TotalOrder = () => {
+const TotalOrder = ({totalOrders}) => {
 
     const {width, height} = useWindowDimensions();
 
@@ -31,7 +31,7 @@ const TotalOrder = () => {
           </View>
           <View style={{flex : 1, alignItems : 'center',justifyContent : 'space-evenly'}}>
                <Text style={[text.small,{fontSize: 14, color: '#666',letterSpacing : 1}]}>Total Orders</Text>
-               <Text style={[text.smallExtraBold,{fontSize : 30 ,marginBottom: 1,}]}>10</Text>
+               <Text style={[text.smallExtraBold,{fontSize : 30 ,marginBottom: 1,}]}>{totalOrders}</Text>
           </View>
         </View>
       </View>
