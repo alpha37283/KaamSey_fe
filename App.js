@@ -13,11 +13,12 @@ import IncomeCard from './src/components/incomeCard';
 import HomePage from './src/screens/homePage';
 import ActiveOrders from './src/components/activeOrders';
 import FetchData from './apis/checking';
+import BottomTabBar from './src/components/bottomTabs';
 
 function App() {
   return (
     
-    <NavigationMain/>
+    <BottomTabBar/>
   
   );
 }
