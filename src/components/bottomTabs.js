@@ -4,9 +4,11 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { NavigationContainer } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import colors from '../styles/colors/colors';
 
-const { width, height} = useWindowDimensions();
+import HomePage from '../screens/homePage';
+import ChatPage from '../screens/chatListPage';
+
+import colors from '../styles/colors/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -17,6 +19,7 @@ const DummyScreen = ({ name }) => (
 );
 
 function CustomTabBar({ state, descriptors, navigation }) {
+  const { width, height } = useWindowDimensions();
   return (
     <View style={{ padding: 15, position: 'relative' }}>
       <LinearGradient
@@ -25,7 +28,12 @@ function CustomTabBar({ state, descriptors, navigation }) {
         end={{ x: 1, y: 0 }}
         style={styles.gradientCard}
       />
-      <View style={[styles.whiteCard, { flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }]}>
+      <View
+        style={[
+          styles.whiteCard,
+          { flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' },
+        ]}
+      >
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
           const isFocused = state.index === index;
@@ -47,9 +55,8 @@ function CustomTabBar({ state, descriptors, navigation }) {
             <View
               key={route.key}
               style={[
-                styles.tabButton,
-                route.name === 'Home' && styles.homeButton,
-                isFocused && (route.name === 'Home' ? styles.activeTabHome : styles.activeTab),
+                {width: width * 0.14, height: height * 0.07, alignItems: 'center', justifyContent: 'center', borderRadius: width * 0.07,
+                backgroundColor: isFocused ? route.name === 'Home' ? styles.activeTabHome.backgroundColor : styles.activeTab.backgroundColor : '#FFFFFF', },
               ]}
             >
               <MaterialCommunityIcons
@@ -66,39 +73,29 @@ function CustomTabBar({ state, descriptors, navigation }) {
   );
 }
 
-export default function App() {
+
+export default function BottomTabsBar() {
   return (
-    <NavigationContainer>
+    
       <Tab.Navigator
         screenOptions={{
           headerShown: false,
         }}
         tabBar={(props) => <CustomTabBar {...props} />}
       >
-        <Tab.Screen name="Wallet" component={() => <DummyScreen name="currency-usd" />} options={{ tabBarIcon: 'currency-usd' }} />
-        <Tab.Screen name="Chat" component={() => <DummyScreen name="chat-outline" />} options={{ tabBarIcon: 'chat-outline' }} />
-        <Tab.Screen name="Home" component={() => <DummyScreen name="home-outline" />} options={{ tabBarIcon: 'home-outline' }} />
-        <Tab.Screen name="Card" component={() => <DummyScreen name="wallet-outline" />} options={{ tabBarIcon: 'wallet-outline' }} />
-        <Tab.Screen name="Profile" component={() => <DummyScreen name="account-outline" />} options={{ tabBarIcon: 'account-outline' }} />
+        <Tab.Screen name="Home" component={HomePage} />
+        <Tab.Screen name="ChatPage" component={ChatPage} options={{ tabBarIcon: 'wallet-outline'}}/>
       </Tab.Navigator>
-    </NavigationContainer>
+
   );
 }
-
+// () => <DummyScreen name="home-outline" />} options={{ tabBarIcon: 'home-outline' }
 const styles = StyleSheet.create({
-  tabButton: {
-    width: 48,
-    height: 48,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 40,
-  },
   homeButton: {
-    width: 60,
+    width: 50,
     height: 50,
-    borderRadius: 30,
-    transform: [{ translateY: -20 }],
-   
+    borderRadius: 50,
+//    transform: [{ translateY: -20 }],
   },
   activeTab: {
     backgroundColor: '#4ADE80',
@@ -129,4 +126,12 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
 });
+
+
+/**
+ 
+<Tab.Screen name="Wallet" component={() => <DummyScreen name="currency-usd" />} options={{ tabBarIcon: 'currency-usd' }} />
+        <Tab.Screen name="Card" component={() => <DummyScreen name="wallet-outline" />} options={{ tabBarIcon: 'wallet-outline' }} />
+        <Tab.Screen name="Profile" component={() => <DummyScreen name="account-outline" />} options={{ tabBarIcon: 'account-outline' }} />
+ */
 

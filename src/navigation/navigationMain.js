@@ -7,6 +7,9 @@ import LoginPage from '../screens/loginPage';
 import SignUp from '../screens/signUpPage';
 import HomePage from '../screens/homePage';
 import FetchData from '../../apis/checking';
+import BottomTabsBar from '../components/bottomTabs';
+import ChatList from '../screens/chatListPage';
+import MessagePage from '../screens/messagePage';
 
 const Stack = createStackNavigator();
 
@@ -35,10 +38,21 @@ export default function NavigationMain() {
         options={{ headerShown: false }}
       />
       <Stack.Screen
-        name="HomePage"
-        component={HomePage}
+        name="BottomTabsBar"
+        component={BottomTabsBar}
         options={{ headerShown: false }}  
       /> 
+       <Stack.Screen 
+        name={'ChatList'}
+        component={ChatList}
+        options={{headerShown: false}}
+        />
+        <Stack.Screen 
+        name={'MessagePage'}
+        component={MessagePage}
+        options={{headerShown: false}}
+        /> 
+    
       
 
 
@@ -46,6 +60,7 @@ export default function NavigationMain() {
     </NavigationContainer>
   );
 }
+
 
 
  

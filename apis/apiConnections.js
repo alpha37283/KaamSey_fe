@@ -19,7 +19,7 @@ const signUpSeller = async (name, email, password) => {
       try {
         
 
-        const response = await fetch(`http://${LOCAL_HOST}/api/sellers/register`, {
+        const response = await fetch(`http://192.168.39.62:3000/api/sellers/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const signUpSeller = async (name, email, password) => {
   
       try {
 
-        const response = await fetch(`http://${LOCAL_HOST}/api/sellers/login`, {
+        const response = await fetch(`http://192.168.39.62:3000/api/sellers/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -73,10 +73,11 @@ const signUpSeller = async (name, email, password) => {
         if (data.success) {
 
           console.log('Success Login successful');
-          storeAsyncData('user_id', data.seller._id);
-          getSellerAndStore();
-          getServicesAndStore();
-          console.log
+          const _id = data.seller._id;
+          storeAsyncData('user_id', _id);
+          await getSellerAndStore({_id});
+          await getServicesAndStore({_id});
+          console.log('Data stored successfully');
           return true;
 
         } else {

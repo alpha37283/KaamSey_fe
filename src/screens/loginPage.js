@@ -18,9 +18,6 @@ export default function LoginPage({navigation}) {
 
     const {width, height} = useWindowDimensions();
     
-    
-    
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
@@ -29,7 +26,7 @@ export default function LoginPage({navigation}) {
         let isSuccess = false; 
         isSuccess = await loginSeller(email, password, navigation);
         if (isSuccess) {
-            navigation.navigate('HomePage');
+            navigation.navigate('BottomTabsBar');
         }
     };
 

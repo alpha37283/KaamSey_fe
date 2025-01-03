@@ -2,10 +2,10 @@ import userDataStore from '../asyncStorage/userDataStore';
 const {storeAsyncData, getData} = userDataStore;
 import {LOCAL_HOST} from '@env';
 
-const getSellerAndStore = async () => {
+const getSellerAndStore = async ({_id}) => {
 
     try {
-        const _id = await getData('user_id'); 
+        //const _id = await getData('user_id'); 
         console.log('Id from fetch seller => ', _id)
         if (!_id) {
             throw new Error('User ID is undefined or null');
@@ -37,14 +37,14 @@ const getSellerAndStore = async () => {
         return data;
 
     } catch (e) {
-        console.error('Error fetching user data:', e.message);
+        console.error('Error fetching seller data:', e.message);
     }
 };
 
 
-const getServicesAndStore = async () => {
+const getServicesAndStore = async ({_id}) => {
     try {
-        const _id = await getData('user_id'); 
+        //const _id = await getData('user_id'); 
         console.log('Id from fetch seller => ', _id)
         if (!_id) {
             throw new Error('User ID is undefined or null');
@@ -78,7 +78,7 @@ const getServicesAndStore = async () => {
         return data;
 
     } catch (e) {
-        console.error('Error fetching user data:', e.message);
+        console.error('Error fetching services data:', e.message);
     }
 };
 

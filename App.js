@@ -13,12 +13,16 @@ import IncomeCard from './src/components/incomeCard';
 import HomePage from './src/screens/homePage';
 import ActiveOrders from './src/components/activeOrders';
 import FetchData from './apis/checking';
-import BottomTabBar from './src/components/bottomTabs';
+import BottomTabsBar from './src/components/bottomTabs'
+import { NavigationContainer } from '@react-navigation/native';
+
 
 function App() {
   return (
     
-    <BottomTabBar/>
+    <NavigationContainer>
+      <BottomTabsBar/>
+    </NavigationContainer>
   
   );
 }

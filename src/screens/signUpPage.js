@@ -30,7 +30,9 @@ export default function SignUp({navigation}) {
             return ;
         }
 
-        signUpSeller(name, email, password, navigation);
+        if(signUpSeller(name, email, password, navigation)){
+            navigation.navigate('LoginPage');
+        }
 
     }
 
