@@ -15,14 +15,22 @@ import ActiveOrders from './src/components/activeOrders';
 import FetchData from './apis/checking';
 import BottomTabsBar from './src/components/bottomTabs'
 import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import ChatList from './src/screens/chatListPage';
+import MessagePage from './src/screens/messagePage';
+
+const Stack = createNativeStackNavigator();
 
 
 function App() {
   return (
     
+      
     <NavigationContainer>
       <BottomTabsBar/>
     </NavigationContainer>
+    
   
   );
 }

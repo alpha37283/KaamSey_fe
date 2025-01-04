@@ -50,15 +50,7 @@ function ChatList({ navigation }) {
 
       <ScrollView style={{flex: 1, borderTopLeftRadius: width * 0.1, borderTopRightRadius: width * 0.1, backgroundColor : 'white'}}>
       {chatList.map(chat => (
-            <TouchableOpacity 
-            key={chat._id} 
-            style={styles.chatItem} 
-            onPress={() => navigation.navigate('MessagePage', { 
-              chatId: chat.chatId, 
-              name: chat.name, 
-              receiverId: chat.receiverId 
-            })}
-          >
+            <TouchableOpacity key={chat._id} style={styles.chatItem} onPress={() => navigation.navigate('ChatDetail', { chatId: chat.chatId, name: chat.name, receiverId : chat.receiverId })}>
           
               <Image source={chat.avatar} style={{width: width * 0.12, height: height * 0.06 , borderRadius: width * 0.07, backgroundColor : 'orange'}} />
               <View style={{flex: 1, marginLeft: 16}}>
