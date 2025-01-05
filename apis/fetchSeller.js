@@ -11,7 +11,7 @@ const getSellerAndStore = async ({_id}) => {
             throw new Error('User ID is undefined or null');
         }
      
-        const response = await fetch(`http://192.168.39.62:3000/api/sellers/${_id}`, {
+        const response = await fetch(`http://${LOCAL_HOST}/api/sellers/${_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ const getServicesAndStore = async ({_id}) => {
             throw new Error('User ID is undefined or null');
         }
      
-        const response = await fetch(`http://192.168.39.62:3000/api/services/${_id}`, {
+        const response = await fetch(`http://${LOCAL_HOST}/api/services/${_id}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

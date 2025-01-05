@@ -82,8 +82,8 @@ export default function BottomTabsBar() {
         <Tab.Screen name="Order" component={OrderStack} 
             options={{ 
               tabBarIcon: ({ focused }) => ( 
-                <Image source={require('../../assets/icons/chatIcon.png')} 
-                style={{ width: width * 0.09, height: height * 0.09, tintColor: focused ? '#4ADE80' : 'black', resizeMode : "contain"}}/>
+                <Image source={require('../../assets/icons/icnOrder.png')} 
+                style={{ width: width * 0.1, height: height * 0.1, tintColor: focused ? '#4ADE80' : 'black', resizeMode : "contain"}}/>
               ),
             }}
         />

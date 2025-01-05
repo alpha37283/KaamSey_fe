@@ -118,7 +118,7 @@ export default function LoginPage({navigation}) {
                 <Text style={[text.smallBold,{ textAlign: 'center', color : '#FFFFFF', letterSpacing : 1}]}>Login</Text>
                 </LinearGradient>
             </TouchableOpacity>
-            <TouchableOpacity style={{marginTop:height * 0.01, alignItems : 'center'}} onPress={() => navigation.navigate('SignUp')}>
+            <TouchableOpacity onBlur={handleLogin} style={{marginTop:height * 0.01, alignItems : 'center'}} onPress={() => navigation.navigate('SignUp')}>
                 <Text style={[text.small]}>Forget Password</Text>
             </TouchableOpacity>
         </View>

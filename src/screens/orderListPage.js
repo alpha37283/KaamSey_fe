@@ -1,43 +1,72 @@
 import React, { useState } from 'react';
-import { View, Text, FlatList, StyleSheet, TouchableOpacity, Dimension, Image, useWindowDimensions, Dimensions } from 'react-native';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Dimension, Image, Dimensions, useWindowDimensions } from 'react-native';
 import OrderCard from '../components/orderCardMain';
 import text from '../styles/textStyles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import colors from '../styles/colors/colors';
 import { TextInput } from 'react-native';
+import { useEffect } from 'react';
+import { ActivityIndicator } from 'react-native';
+import userDataStore from '../../asyncStorage/userDataStore';
+const {getData} = userDataStore;
 
 const { width, height } = Dimensions.get('window'); 
 
-
-const mockOrders = [
-  {
-    id: '1',
-    name: 'Kamran Wahab',
-    description: 'Locally based trusted driver for booking.',
-    price: '$12',
-    status: 'Pending',
-  },
-  {
-    id: '2',
-    name: 'John Doe',
-    description: 'Reliable package delivery service.',
-    price: '$15',
-    status: 'Completed',
-  },
-  {
-    id: '3',
-    name: 'Alice Smith',
-    description: 'Cancellation and returns service.',
-    price: '$10',
-    status: 'Cancelled',
-  },
-  
-];
-
 export default function OrderListPage({ navigation }) {
+
+  const [services, setServices] = useState(null);
+  const [loading, setLoading] = useState(true); 
   const [activeTab, setActiveTab] = useState('Pending'); 
+
   
-  const filteredOrders = mockOrders.filter((order) => order.status === activeTab);
+  useEffect(() => {
+    let isMounted = true;
+
+    const fetchData = async () => {
+      try {
+        const servicesData = await getData('services');
+//        console.log(servicesData);
+
+        if (isMounted) {
+          setServices(servicesData);
+        }
+      } catch (error) {
+        console.error('An error occurred while fetching data:', error);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
+    };
+
+  fetchData();
+
+  return () => {
+    isMounted = false;
+  };
+}, []);
+
+// Loading state
+if (loading) {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <ActivityIndicator size="large" color={colors.primary} />
+      <Text>Loading...</Text>
+    </View>
+  );
+}
+
+// Error state if no data is available
+if (!services) {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text style={[text.mediumExtraBold, { color: colors.error }]}>
+        Unable to load data. Please check your connection or try again.
+      </Text>
+    </View>
+  );
+}
+
+const filterOrders = services.filter((service) => service.status === activeTab)
+  
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.tertiary}}>
@@ -63,9 +92,9 @@ export default function OrderListPage({ navigation }) {
           </View>
 
         
-          <FlatList data={filteredOrders} keyExtractor={(item) => item.id} 
+          <FlatList data={filterOrders} keyExtractor={(item) => item._id} 
           renderItem={({ item }) => (
-              <OrderCard name={item.name} description={item.description} price={item.price} status={item.status} 
+              <OrderCard name={item.buyerName} description={item.jobDescription} price={item.price} status={item.status}
               onPress={() => navigation.navigate('OrderInfoPage', { order: item })}/>
             )}
           />

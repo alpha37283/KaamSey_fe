@@ -1,8 +1,9 @@
+import {LOCAL_HOST} from '@env';
 const fetchChatList = async () => {
     
     try 
     {
-        const data = await fetch(('http://192.168.39.62:3000/api/messages/chatList/1'), {
+        const data = await fetch((`http://${LOCAL_HOST}/api/messages/chatList/abc`), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,7 +23,7 @@ const fetchChatList = async () => {
 
 const fetchMessages = async (chatId, setMessages) => {
 try {
-    const response = await fetch(`http://192.168.100.62:3000/api/messages/1`);
+    const response = await fetch(`http://${LOCAL_HOST}/api/messages/1`);
     const data = await response.json();
     setMessages(data);
 } catch (error) {

@@ -6,7 +6,6 @@ const text = StyleSheet.create({
     large: {
         fontSize: 24,
         fontFamily: 'PM',
-
     },
     medium: {
         fontSize: 18,

@@ -19,7 +19,7 @@ const signUpSeller = async (name, email, password) => {
       try {
         
 
-        const response = await fetch(`http://192.168.39.62:3000/api/sellers/register`, {
+        const response = await fetch(`http://${LOCAL_HOST}/api/sellers/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -59,7 +59,7 @@ const signUpSeller = async (name, email, password) => {
   
       try {
 
-        const response = await fetch(`http://192.168.39.62:3000/api/sellers/login`, {
+        const response = await fetch(`http://${LOCAL_HOST}/api/sellers/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

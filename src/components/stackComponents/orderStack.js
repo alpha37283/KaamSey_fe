@@ -13,7 +13,7 @@ export default function OrderStack() {
   return (
           <Stack.Navigator>
               <Stack.Screen name="OrderList" component={OrderListPage} options={{headerShown : false}}/>
-              <Stack.Screen name="OrderInfoPage" component={OrderInfoPage} options={{ title: 'Order Details' }} />
+              <Stack.Screen name="OrderInfoPage" component={OrderInfoPage} options={{headerShown : false }} />
           </Stack.Navigator>
   );
 }

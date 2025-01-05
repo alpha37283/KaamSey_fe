@@ -22,7 +22,7 @@ function HomePage() {
   const [loading, setLoading] = useState(true); // Keep all hooks at the top level
   const { width, height } = useWindowDimensions();
 
-  // Fetch data on mount
+
   useEffect(() => {
     let isMounted = true;
 

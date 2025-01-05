@@ -18,3 +18,36 @@ we have login page => on login is handled using apiConnections which stores sell
 - Now what i have to do is set up home page for the given data from asyncStorage then the home page will be completed . . . .
 
 # b : clear All data issue
+
+# Mock data
+
+const mockOrders = [
+{
+id: '1',
+name: 'Kamran Wahab',
+description: 'Locally based trusted driver for booking.',
+price: '$12',
+status: 'Pending',
+},
+{
+id: '2',
+name: 'John Doe',
+description: 'Reliable package delivery service.',
+price: '$15',
+status: 'Completed',
+},
+{
+id: '3',
+name: 'Alice Smith',
+description: 'Cancellation and returns service.',
+price: '$10',
+status: 'Cancelled',
+},
+
+];
+
+# Make pages design consistent like diff between chat and order page
+
+# fix chat
+
+# add backend functionality for the images of the users
