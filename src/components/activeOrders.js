@@ -7,7 +7,6 @@ import { Divider } from 'react-native-elements';
 
 
 import text from '../styles/textStyles';
-import { color } from 'react-native-elements/dist/helpers';
 
 const ActiveOrders = ({data}) => {
 

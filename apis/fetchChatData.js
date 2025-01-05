@@ -2,7 +2,7 @@ const fetchChatList = async () => {
     
     try 
     {
-        const data = await fetch(('http://192.168.39.62:3000/api/messages/chatList/abc'), {
+        const data = await fetch(('http://192.168.39.62:3000/api/messages/chatList/1'), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ const fetchChatList = async () => {
 
 const fetchMessages = async (chatId, setMessages) => {
 try {
-    const response = await fetch(`http://192.168.39.62:3000/api/messages/${chatId}`);
+    const response = await fetch(`http://192.168.100.62:3000/api/messages/1`);
     const data = await response.json();
     setMessages(data);
 } catch (error) {

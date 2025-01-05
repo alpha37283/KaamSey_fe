@@ -17,8 +17,10 @@ import BottomTabsBar from './src/components/bottomTabs'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import ChatList from './src/screens/chatListPage';
-import MessagePage from './src/screens/messagePage';
+import OrderListPage from './src/screens/orderListPage';
+import OrderStack from './src/components/stackComponents/orderStack';
+import SearchBar from 'react-native-elements/dist/searchbar/SearchBar-ios';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -26,12 +28,9 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     
-      
     <NavigationContainer>
       <BottomTabsBar/>
     </NavigationContainer>
-    
-  
   );
 }
 

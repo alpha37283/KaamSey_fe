@@ -1,27 +1,19 @@
 import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity, useWindowDimensions } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { NavigationContainer } from '@react-navigation/native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import ChatStack from './stackComponents/chatStack';
 
 import HomePage from '../screens/homePage';
-import ChatList from '../screens/chatListPage';
-import MessagePage from '../screens/messagePage';
+
 
 import colors from '../styles/colors/colors';
+import OrderStack from './stackComponents/orderStack';
+import OrderListPage from '../screens/orderListPage';
 
 const Tab = createBottomTabNavigator();
-const Stack = createNativeStackNavigator();
 
-function ChatStack() {
-  return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="ChatPage" component={ChatList} />
-      <Stack.Screen name="ChatDetail" component={MessagePage} />
-    </Stack.Navigator>
-  );
-}
 
 function CustomTabBar({ state, descriptors, navigation }) {
   const { width, height } = useWindowDimensions();
@@ -86,6 +78,14 @@ export default function BottomTabsBar() {
               style={{ width: width * 0.09, height: height * 0.09, tintColor: focused ? '#4ADE80' : 'black', resizeMode : "contain"}}/>
             ),
           }}
+        />
+        <Tab.Screen name="Order" component={OrderStack} 
+            options={{ 
+              tabBarIcon: ({ focused }) => ( 
+                <Image source={require('../../assets/icons/chatIcon.png')} 
+                style={{ width: width * 0.09, height: height * 0.09, tintColor: focused ? '#4ADE80' : 'black', resizeMode : "contain"}}/>
+              ),
+            }}
         />
       </Tab.Navigator>
 
