@@ -52,6 +52,11 @@ const sendMessage = async () => {
       console.error('Error: senderId not found');
       return;
     }
+
+    if (text.trim().length === 0) {
+      console.log('Empty message!!!');
+      return; 
+    }
     const newMessage = {
       senderId,
       senderName,
