@@ -20,6 +20,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import OrderListPage from './src/screens/orderListPage';
 import OrderStack from './src/components/stackComponents/orderStack';
 import SearchBar from 'react-native-elements/dist/searchbar/SearchBar-ios';
+import ChatStack from './src/components/stackComponents/chatStack';
 
 
 const Stack = createNativeStackNavigator();
@@ -29,7 +30,7 @@ function App() {
   return (
     
     <NavigationContainer>
-      <BottomTabsBar/>
+      <ChatStack/>
     </NavigationContainer>
   );
 }

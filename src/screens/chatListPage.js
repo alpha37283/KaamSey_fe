@@ -19,6 +19,7 @@ function ChatList({ navigation }) {
       try {
         const fetchedChatList = await fetchChatList();
         const {data} = fetchedChatList;
+        console.log(data);
         if (!Array.isArray(data)) {
           throw new Error('Invalid response format: Expected an array');
         }
@@ -44,16 +45,15 @@ function ChatList({ navigation }) {
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.tertiary}}>
       <View style={{padding: width * 0.05, marginTop : height * 0.02}}>
-        <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03}}>Chat</Text>
-        <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: 25, padding: 8}}>
-          <Image source={require('../../assets/icons/icnSearch.png')} style={{width : width * 0.05, height : height * 0.05}} />
-          <Icon name="search" size={20} color="white" style={styles.searchIcon} />
-          <TextInput placeholder="Search" placeholderTextColor="white" style={{padding : width * 0.03}}/>
-        </View>
+              <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03, marginTop : height * 0.03}}>Chat</Text>
+              <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: 25, padding: 8}}>
+                <Image source={require('../../assets/icons/icnSearch.png')} style={{width : width * 0.07, height : height * 0.04, tintColor : 'white'}}/>
+                <TextInput placeholder="Search" placeholderTextColor="white" style={{padding : width * 0.03}}/>
+              </View>
       </View>
       
 
-      <ScrollView style={{flex: 1, borderTopLeftRadius: width * 0.1, borderTopRightRadius: width * 0.1, backgroundColor : 'white'}}>
+      <ScrollView style={{flex: 1, borderTopLeftRadius: width * 0.1, borderTopRightRadius: width * 0.1, backgroundColor : 'white',}}>
       {chatList.map(chat => (
             <TouchableOpacity key={chat._id} style={styles.chatItem} onPress={() => navigation.navigate('ChatDetail', { chatId: chat.chatId, name: chat.name, receiverId : chat.receiverId })}>
           

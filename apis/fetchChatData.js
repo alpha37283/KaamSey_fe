@@ -1,9 +1,15 @@
 import {LOCAL_HOST} from '@env';
+import io from 'socket.io-client';
+
+
+
+const socket = io(`http://${LOCAL_HOST}`);
+
 const fetchChatList = async () => {
     
     try 
     {
-        const data = await fetch((`http://${LOCAL_HOST}/api/messages/chatList/abc`), {
+        const data = await fetch((`http://${LOCAL_HOST}/api/messages/chatList/67778d89e93a19f29eb9af45`), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -21,14 +27,38 @@ const fetchChatList = async () => {
 }
 
 
-const fetchMessages = async (chatId, setMessages) => {
+const fetchMessages = async (chatId) => {
 try {
-    const response = await fetch(`http://${LOCAL_HOST}/api/messages/1`);
+    const response = await fetch(`http://${LOCAL_HOST}/api/messages/${chatId}`);
     const data = await response.json();
-    setMessages(data);
+    console.log('Messages are => ' , data)
+    return data;
 } catch (error) {
     console.error('Error fetching messages:', error);
 }
 };
 
-export default {fetchChatList, fetchMessages};
+
+const sendMessageOnSocket = async (chatId, receiverId, setMessages) => {
+    try {
+      // Fetch messages for the given chatId
+      const fetchedMessages = await fetchMessages(chatId, setMessages);
+      setMessages(fetchedMessages)
+  
+      // Join the room associated with the receiverId
+      socket.emit('joinRoom', receiverId);
+  
+      // Listen for incoming messages
+      socket.on('receiveMessage', (message) => {
+        console.log('Received message => ', message.chatId);
+        if (message.chatId === chatId) {
+          setMessages((prevMessages) => [...prevMessages, message]);
+        }
+      });
+    } catch (error) {
+      console.error('Error in sendMessageOnSocket:', error);
+    }
+  };
+  
+
+export default {fetchChatList, fetchMessages, sendMessageOnSocket};

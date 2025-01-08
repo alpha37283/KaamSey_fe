@@ -70,7 +70,7 @@ const filterOrders = services.filter((service) => service.status === activeTab)
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.tertiary}}>
-      <View style={{padding: width * 0.05, marginTop : height * 0.02}}>
+      <View style={{padding: width * 0.05}}>
         <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03}}>Orders</Text>
         <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: 25, padding: 8}}>
           <Image source={require('../../assets/icons/icnSearch.png')} style={{width : width * 0.07, height : height * 0.04, tintColor : 'white'}}/>

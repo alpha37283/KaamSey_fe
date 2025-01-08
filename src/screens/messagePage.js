@@ -3,9 +3,10 @@ import { View, Text, ScrollView, TextInput, TouchableOpacity, Image, StyleSheet,
 import Icon from 'react-native-vector-icons/Feather';
 import io from 'socket.io-client';
 import fetchChatData from '../../apis/fetchChatData.js';
-const {fetchMessages} = fetchChatData;
+const {sendMessageOnSocket, fetchMessages} = fetchChatData;
+import {LOCAL_HOST} from '@env'
 
-const socket = io('http://192.168.39.62:3000');
+const socket = io(`http://${LOCAL_HOST}`);
 
 const formatTime = (date) => {
   const hours = date.getHours();
@@ -25,38 +26,32 @@ function MessagePage({ route, navigation }) {
   const [text, setText] = useState('');
 
  
-  const senderId = 'abc';
+  const senderId = '67778d89e93a19f29eb9af45';
 
   const {width, height } = useWindowDimensions();
 
-  useEffect(() => {
-//    console.log('Chat ID => ', chatId);
-    fetchMessages(chatId, setMessages);
-  
-    socket.emit('joinRoom', receiverId);
-    socket.on('receiveMessage', (message) => {
-      if (message.chatId === chatId) {
-        setMessages((prevMessages) => [...prevMessages, message]);
-      }
-    });
+useEffect(() => {
+  sendMessageOnSocket(chatId, receiverId, setMessages)
   
     return () => {
       socket.off('receiveMessage');
     };
-  }, [chatId]);
+}, [chatId]);
+  
+  
 
-  const sendMessage = () => {
-    const newMessage = {
-      senderId,
-      senderName : senderName,
-      receiverId,
-      receiverName : receiverName,
-      chatId,
-      text
-    };
-    socket.emit('sendMessage', newMessage);
-    setText('');
+const sendMessage = () => {
+  const newMessage = {
+    senderId,
+    senderName : senderName,
+    receiverId,
+    receiverName : receiverName,
+    chatId,
+    text
   };
+  socket.emit('sendMessage', newMessage);
+  setText('');
+};
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
