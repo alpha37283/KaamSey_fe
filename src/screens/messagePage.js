@@ -4,6 +4,8 @@ import Icon from 'react-native-vector-icons/Feather';
 import io from 'socket.io-client';
 import fetchChatData from '../../apis/fetchChatData.js';
 const {sendMessageOnSocket, fetchMessages} = fetchChatData;
+import userDataStore from '../../asyncStorage/userDataStore.js';
+const {storeAsyncData, getData} = userDataStore;
 import {LOCAL_HOST} from '@env'
 
 const socket = io(`http://${LOCAL_HOST}`);
@@ -19,38 +21,50 @@ const formatTime = (date) => {
 
 
 function MessagePage({ route, navigation }) {
-  const { chatId, name, receiverId } = route.params;
+  const { chatId, name, receiverId , avatar} = route.params;
   const senderName = "Muneeb";
   const receiverName = name;
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
-
- 
-  const senderId = '67778d89e93a19f29eb9af45';
+  const [senderId, setSenderId] = useState(null);
 
   const {width, height } = useWindowDimensions();
 
 useEffect(() => {
-  sendMessageOnSocket(chatId, receiverId, setMessages)
-  
+
+  const fetchSenderId = async () => {
+      const id = await getData('user_id');
+      setSenderId(id); 
+    };
+
+    fetchSenderId();
+    sendMessageOnSocket(chatId, receiverId, setMessages)
+
     return () => {
       socket.off('receiveMessage');
     };
 }, [chatId]);
-  
-  
 
-const sendMessage = () => {
-  const newMessage = {
-    senderId,
-    senderName : senderName,
-    receiverId,
-    receiverName : receiverName,
-    chatId,
-    text
-  };
-  socket.emit('sendMessage', newMessage);
-  setText('');
+
+const sendMessage = async () => {
+  try {
+    if (!senderId) {
+      console.error('Error: senderId not found');
+      return;
+    }
+    const newMessage = {
+      senderId,
+      senderName,
+      receiverId,
+      receiverName,
+      chatId,
+      text,
+    };
+    socket.emit('sendMessage', newMessage);
+    setText('');
+  } catch (e) {
+    console.error('Error occurred while sending message:', e);
+  }
 };
 
   return (
@@ -59,7 +73,7 @@ const sendMessage = () => {
         <TouchableOpacity onPress={() => navigation.goBack()}>
           <Icon name="arrow-left" size={24} color="#333" />
         </TouchableOpacity>
-        <Image source={require('../../assets/icons/apple.png')} style={{width: 40, height: 40, borderRadius: 20, marginLeft: 12}} />
+        <Image source={avatar} style={{width: 40, height: 40, borderRadius: 20, marginLeft: 12}} />
         <View style={{flex: 1, marginLeft: 12,}}>
           <Text style={{ fontSize: 16, fontWeight: '600', color: '#333'}}>{name}</Text>
         </View>

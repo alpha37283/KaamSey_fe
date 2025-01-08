@@ -1,37 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, TextInput, StyleSheet, SafeAreaView, useWindowDimensions } from 'react-native';
-import Icon from 'react-native-vector-icons/Feather';
-import fetchChatData from '../../apis/fetchChatData.js';
-const {fetchChatList} = fetchChatData;
 import colors from '../styles/colors/colors.js';
-import { LinearGradient } from 'expo-linear-gradient';
+
+import userDataStore from '../../asyncStorage/userDataStore.js';
+const {storeAsyncData, getData} = userDataStore;
 
 
 function ChatList({ navigation }) {
   
   const [chatList, setChatList] = useState([]);
-
   const {width, height} = useWindowDimensions();
 
 
   useEffect(() => {
-    const getChatList = async () => {
+    const getMessagesFromAsync = async () => {
       try {
-        const fetchedChatList = await fetchChatList();
-        const {data} = fetchedChatList;
-        console.log(data);
-        if (!Array.isArray(data)) {
-          throw new Error('Invalid response format: Expected an array');
-        }
+       
+        const chatListFromAsync = await getData('chatList');  // => fetch list stored on asyncStorage
+        console.log(chatListFromAsync);
+        const {data} = chatListFromAsync;
         setChatList(data);
       } catch (error) {
         console.error('Error fetching chat list:', error);
-        setChatList([]); // Set to an empty array on error
       }
     };
   
-    getChatList();
+    getMessagesFromAsync(); 
   }, []);
+  
 
   if (chatList.length === 0) {
     return (
@@ -40,8 +36,7 @@ function ChatList({ navigation }) {
       </View>
     );
   }
-  
-  
+
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.tertiary}}>
       <View style={{padding: width * 0.05, marginTop : height * 0.02}}>
@@ -52,27 +47,57 @@ function ChatList({ navigation }) {
               </View>
       </View>
       
+      <ScrollView
+  style={{ flex: 1, borderTopLeftRadius: width * 0.1, borderTopRightRadius: width * 0.1, backgroundColor: 'white' }}
+>
+  {chatList.map((chat) => {
+   
+    const hardCodeImages = {
+      Atif: require('../../assets/images/atif.jpg'),
+      Zoha: require('../../assets/images/zoha.jpg'),
+      Kamran: require('../../assets/images/kami.jpg'),
+    };
 
-      <ScrollView style={{flex: 1, borderTopLeftRadius: width * 0.1, borderTopRightRadius: width * 0.1, backgroundColor : 'white',}}>
-      {chatList.map(chat => (
-            <TouchableOpacity key={chat._id} style={styles.chatItem} onPress={() => navigation.navigate('ChatDetail', { chatId: chat.chatId, name: chat.name, receiverId : chat.receiverId })}>
-          
-              <Image source={chat.avatar} style={{width: width * 0.12, height: height * 0.06 , borderRadius: width * 0.07, backgroundColor : 'orange'}} />
-              <View style={{flex: 1, marginLeft: 16}}>
-                <Text style={{fontSize: 16, fontWeight: '600', color: '#333'}}>{chat.name}</Text>
-                <Text style={{color: '#666', marginTop: 4}}>{chat.lastMessage}</Text>
-              </View>
-              <View style={{alignItems: 'flex-end'}}>
-                <Text style={{color: '#999', fontSize: 12}}>{chat.timestamp}</Text>
-                {chat.unread > 0 && (
-                  <View style={styles.unreadBadge}>
-                    <Text style={{color: 'white', fontSize: 12}}>{chat.unread}</Text>
-                  </View>
-                )}
-              </View>
-            </TouchableOpacity>
-            ))}
-      </ScrollView>
+   
+    const avatarImage = hardCodeImages[chat.name] || null; 
+
+    return (
+      <TouchableOpacity
+        key={chat._id}
+        style={{ flexDirection: 'row', alignItems: 'center', padding: 16, borderBottomWidth: 1, borderBottomColor: '#f0f0f0' }}
+        onPress={() =>
+          navigation.navigate('ChatDetail', {
+            chatId: chat.chatId,
+            name: chat.name,
+            receiverId: chat.receiverId,
+            avatar: avatarImage,
+          })
+        }
+      >
+        {avatarImage ? (
+         
+          <Image source={avatarImage} style={{ width: width * 0.12, height: height * 0.06, borderRadius: width * 0.07 }} />
+        ) : (
+         
+          <View style={{ width: width * 0.12, height: height * 0.06, borderRadius: width * 0.07, backgroundColor: 'orange' }} />
+        )}
+        <View style={{ flex: 1, marginLeft: 16 }}>
+          <Text style={{ fontSize: 16, fontWeight: '600', color: '#333' }}>{chat.name}</Text>
+          <Text style={{ color: '#666', marginTop: 4 }}>{chat.lastMessage}</Text>
+        </View>
+        <View style={{ alignItems: 'flex-end' }}>
+          <Text style={{ color: '#999', fontSize: 12 }}>{chat.timestamp}</Text>
+          {chat.unread > 0 && (
+            <View style={{ backgroundColor: '#4CAF50', borderRadius: 12, paddingHorizontal: 8, paddingVertical: 4, marginTop: 8 }}>
+              <Text style={{ color: 'white', fontSize: 12 }}>{chat.unread}</Text>
+            </View>
+          )}
+        </View>
+      </TouchableOpacity>
+    );
+  })}
+</ScrollView>
+
       
     </SafeAreaView>
   );
@@ -95,3 +120,24 @@ const styles = StyleSheet.create({
 
 export default ChatList;
 
+
+
+// {chatList.map(chat => (
+        
+//   <TouchableOpacity key={chat._id} style={styles.chatItem} onPress={() => navigation.navigate('ChatDetail', { chatId: chat.chatId, name: chat.name, receiverId : chat.receiverId })}>
+
+//     <Image source={chat.avatar} style={{width: width * 0.12, height: height * 0.06 , borderRadius: width * 0.07, backgroundColor : 'orange'}} />
+//     <View style={{flex: 1, marginLeft: 16}}>
+//       <Text style={{fontSize: 16, fontWeight: '600', color: '#333'}}>{chat.name}</Text>
+//       <Text style={{color: '#666', marginTop: 4}}>{chat.lastMessage}</Text>
+//     </View>
+//     <View style={{alignItems: 'flex-end'}}>
+//       <Text style={{color: '#999', fontSize: 12}}>{chat.timestamp}</Text>
+//       {chat.unread > 0 && (
+//         <View style={styles.unreadBadge}>
+//           <Text style={{color: 'white', fontSize: 12}}>{chat.unread}</Text>
+//         </View>
+//       )}
+//     </View>
+//   </TouchableOpacity>
+//   ))}

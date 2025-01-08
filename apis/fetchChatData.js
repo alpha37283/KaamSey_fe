@@ -1,15 +1,14 @@
 import {LOCAL_HOST} from '@env';
 import io from 'socket.io-client';
+import userDataStore from '../asyncStorage/userDataStore';
+const {storeAsyncData, getData} = userDataStore;
 
+const socket = io(`http://${LOCAL_HOST}`);   
 
-
-const socket = io(`http://${LOCAL_HOST}`);
-
-const fetchChatList = async () => {
-    
+const fetchChatListAndStore = async ({_id}) => {
     try 
     {
-        const data = await fetch((`http://${LOCAL_HOST}/api/messages/chatList/67778d89e93a19f29eb9af45`), {
+        const data = await fetch((`http://${LOCAL_HOST}/api/messages/chatList/${_id}`), {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -17,7 +16,8 @@ const fetchChatList = async () => {
         })
 
         const chatList = await data.json();
-        console.log('Chat List => ', chatList);
+        await storeAsyncData('chatList', chatList);    // => stored data on asyncStorage and will be retrieved on chatListPage.js
+//        console.log('Chat List => ', chatList);
         return chatList;
     }
     catch(e)
@@ -27,11 +27,15 @@ const fetchChatList = async () => {
 }
 
 
-const fetchMessages = async (chatId) => {
+const fetchMessagesAndStore = async (chatId) => {
 try {
     const response = await fetch(`http://${LOCAL_HOST}/api/messages/${chatId}`);
     const data = await response.json();
-    console.log('Messages are => ' , data)
+    // console.log('Messages are => ' , data)
+    // const jsonMessagesData = JSON.stringify(data);   => tried to store message on async storage but failed
+    // await storeAsyncData('messages', jsonMessagesData);
+    // console.log('Messages at fetch => ', jsonMessagesData);
+
     return data;
 } catch (error) {
     console.error('Error fetching messages:', error);
@@ -41,16 +45,17 @@ try {
 
 const sendMessageOnSocket = async (chatId, receiverId, setMessages) => {
     try {
-      // Fetch messages for the given chatId
-      const fetchedMessages = await fetchMessages(chatId, setMessages);
-      setMessages(fetchedMessages)
+
+        const messagesFetched = await fetchMessagesAndStore(chatId);
+//      const messagesFromAsync = await getData('messages')
+//      const {data} = messagesFromAsync;
+      console.log('--------------------data-------------------\n\n\n',messagesFetched);
+      setMessages(messagesFetched);
   
-      // Join the room associated with the receiverId
       socket.emit('joinRoom', receiverId);
   
-      // Listen for incoming messages
       socket.on('receiveMessage', (message) => {
-        console.log('Received message => ', message.chatId);
+
         if (message.chatId === chatId) {
           setMessages((prevMessages) => [...prevMessages, message]);
         }
@@ -61,4 +66,4 @@ const sendMessageOnSocket = async (chatId, receiverId, setMessages) => {
   };
   
 
-export default {fetchChatList, fetchMessages, sendMessageOnSocket};
+export default {fetchChatListAndStore, fetchMessagesAndStore, sendMessageOnSocket};

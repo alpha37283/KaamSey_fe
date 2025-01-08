@@ -29,9 +29,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     
-    <NavigationContainer>
-      <ChatStack/>
-    </NavigationContainer>
+    <NavigationMain/>
   );
 }
 

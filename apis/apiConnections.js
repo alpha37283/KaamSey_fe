@@ -3,6 +3,8 @@ const {storeAsyncData, clearAllData} = userDataStore;
 import {LOCAL_HOST} from '@env';
 import fetchSeller from "./fetchSeller";
 const {getSellerAndStore , getServicesAndStore, } = fetchSeller;
+import fetchChatData from "./fetchChatData";
+const {fetchChatListAndStore, fetchMessagesAndStore} = fetchChatData;
 
 
 const signUpSeller = async (name, email, password) => {
@@ -77,6 +79,7 @@ const signUpSeller = async (name, email, password) => {
           storeAsyncData('user_id', _id);
           await getSellerAndStore({_id});
           await getServicesAndStore({_id});
+          await fetchChatListAndStore({_id});
           console.log('Data stored successfully');
           return true;
 

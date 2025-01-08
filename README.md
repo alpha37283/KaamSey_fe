@@ -50,4 +50,13 @@ status: 'Cancelled',
 
 # fix chat
 
+stored messages and chatList on asyncStorage
+retrieve from async
+
 # add backend functionality for the images of the users
+
+1. add profile params being passed
+2. camera being opened
+3. attachement being opened component
+
+chatList is stored in async with key 'chatList'
