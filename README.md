@@ -60,3 +60,5 @@ retrieve from async
 3. attachement being opened component
 
 chatList is stored in async with key 'chatList'
+
+# Prevent user form entering empty login sign up info

@@ -21,6 +21,8 @@ import OrderListPage from './src/screens/orderListPage';
 import OrderStack from './src/components/stackComponents/orderStack';
 import SearchBar from 'react-native-elements/dist/searchbar/SearchBar-ios';
 import ChatStack from './src/components/stackComponents/chatStack';
+import MessagePage from './src/screens/messagePage';
+import ChatList from './src/screens/chatListPage';
 
 
 const Stack = createNativeStackNavigator();
@@ -29,7 +31,9 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     
-    <NavigationMain/>
+    <NavigationContainer>
+      <ChatStack></ChatStack>
+    </NavigationContainer>
   );
 }
 

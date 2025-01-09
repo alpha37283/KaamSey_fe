@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TextInput, TouchableOpacity, Image, StyleSheet, SafeAreaView, useWindowDimensions } from 'react-native';
+import { View, Text, ScrollView, TextInput, TouchableOpacity, Image, StyleSheet, SafeAreaView, useWindowDimensions, Modal} from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import io from 'socket.io-client';
 import fetchChatData from '../../apis/fetchChatData.js';
@@ -7,6 +7,7 @@ const {sendMessageOnSocket, fetchMessages} = fetchChatData;
 import userDataStore from '../../asyncStorage/userDataStore.js';
 const {storeAsyncData, getData} = userDataStore;
 import {LOCAL_HOST} from '@env'
+import BottomAttachment from '../components/bottomSheetForChat.js';
 
 const socket = io(`http://${LOCAL_HOST}`);
 
@@ -27,6 +28,7 @@ function MessagePage({ route, navigation }) {
   const [messages, setMessages] = useState([]);
   const [text, setText] = useState('');
   const [senderId, setSenderId] = useState(null);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const {width, height } = useWindowDimensions();
 
@@ -111,9 +113,17 @@ const sendMessage = async () => {
       </ScrollView>
 
       <View style={styles.inputContainer}>
-        <TouchableOpacity style={{marginRight: 8}}>
+        <TouchableOpacity style={{marginRight: 8}} onPress={()=>{setModalVisible(true)}}>
           <Icon name="paperclip" size={24} color="#666" />
         </TouchableOpacity>
+            <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => setModalVisible(false)}
+            >
+            <BottomAttachment onClose={() => setModalVisible(false)} />
+          </Modal>
         <TextInput
           style={styles.input}
           placeholder="Write your message..."
@@ -121,8 +131,8 @@ const sendMessage = async () => {
           value={text}
           onChangeText={setText}
         />
-        <TouchableOpacity style={{marginLeft: width * 0.01}}>
-          <Icon name="camera" size={24} color="#666" />
+        <TouchableOpacity style={{marginLeft: width * 0.01}} onPress={() => navigation.navigate('CameraScreen')}>
+          <Image source={require('../../assets/icons/icnCamera.png')} style={{width : width * 0.06, height : height * 0.03,tintColor : 'black'}}></Image>
         </TouchableOpacity>
         <TouchableOpacity style={{marginLeft: 8}} onPress={sendMessage}>
           <Icon name="send" size={24} color="#4CAF50" />
