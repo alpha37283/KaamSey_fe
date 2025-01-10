@@ -10,6 +10,8 @@ import FetchData from '../../apis/checking';
 import BottomTabsBar from '../components/bottomTabs';
 import ChatList from '../screens/chatListPage';
 import MessagePage from '../screens/messagePage';
+import uploadMoreInfo from '../../apis/uploadMoreInfo';
+import AddMoreInfo from '../screens/addMoreInfo';
 
 const Stack = createStackNavigator();
 
@@ -52,7 +54,12 @@ export default function NavigationMain() {
         component={MessagePage}
         options={{headerShown: false}}
         /> 
-    
+
+        <Stack.Screen
+        name={'AddMoreInfo'}
+        component={AddMoreInfo}
+        options={{headerShown: false}}
+        />
       
 
 

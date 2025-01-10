@@ -30,11 +30,11 @@ export default function SignUp({navigation}) {
             return ;
         }
 
-        if(signUpSeller(name, email, password, navigation)){
-            navigation.navigate('LoginPage');
+        signUpSeller(name, email, password, navigation)
+            
         }
 
-    }
+    
 
 
     const [fontsLoaded] = useFonts({

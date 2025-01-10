@@ -24,6 +24,7 @@ import ChatStack from './src/components/stackComponents/chatStack';
 import MessagePage from './src/screens/messagePage';
 import ChatList from './src/screens/chatListPage';
 import AddMoreInfo from './src/screens/addMoreInfo';
+import ImagePicker from './src/components/imagePicker';
 
 
 const Stack = createNativeStackNavigator();
@@ -32,7 +33,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     
-    <AddMoreInfo></AddMoreInfo>
+    <NavigationMain/>
   );
 }
 

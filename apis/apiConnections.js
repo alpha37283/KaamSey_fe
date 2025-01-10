@@ -7,7 +7,7 @@ import fetchChatData from "./fetchChatData";
 const {fetchChatListAndStore, fetchMessagesAndStore} = fetchChatData;
 
 
-const signUpSeller = async (name, email, password) => {
+const signUpSeller = async (name, email, password, navigation) => {
 
     console.log(name, " ", email, " ", password);
   
@@ -34,6 +34,11 @@ const signUpSeller = async (name, email, password) => {
   
         if (data.success) {
           console.log('Success', 'SingUp successful');
+          const _id = data.seller._id;
+//          console.log(_id, ' is the id at signup saving to async. . . . . ');
+          storeAsyncData('user_id', _id);
+          await getSellerAndStore({_id});
+          navigation.navigate('AddMoreInfo');
           return true;
          
           

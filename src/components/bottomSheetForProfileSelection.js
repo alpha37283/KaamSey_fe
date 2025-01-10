@@ -7,7 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 const {width, height} = Dimensions.get('window')
 
-export default function BottomSelectProfile({ onClose }) {
+export default function BottomSelectProfile({ onClose, onPressProfilePicker }) {
 
   return (
     <TouchableWithoutFeedback onPress={onClose}>
@@ -32,7 +32,7 @@ export default function BottomSelectProfile({ onClose }) {
                             </View>
                         </TouchableOpacity>
 
-                        <TouchableOpacity onPress={onClose}>
+                        <TouchableOpacity onPress={onPressProfilePicker}>
                             <View style={{flexDirection : 'row', padding : width * 0.01, alignItems : 'center'}}>
                                 <View style={{alignItems : 'center', justifyContent : 'center',width: width * 0.12, height : height * 0.06, borderRadius : width * 0.1,marginRight : width * 0.03,  backgroundColor : colors.primary}}>
                                     <Image source={require('../../assets/icons/icnMediaFile.png')} style={{width : width * 0.06, height : height * 0.03,tintColor : 'black'}}></Image>

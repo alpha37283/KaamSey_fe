@@ -7,26 +7,67 @@ import text from '../styles/textStyles';
 import AddContact from '../components/selectListCountryCode';
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
+import * as ImagePicker from 'expo-image-picker';
+
 const {width, height } = Dimensions.get('window');
 import BottomSelectProfile from '../components/bottomSheetForProfileSelection';
 
-export default function AddMoreInfo() {
-      const [number, setNumber] = useState('')
-      const [location, setLocation] = useState('')
-      const [selectCode, setSelectCode] = useState('');
-      const [modalVisible, setModalVisible] = useState(false);
+import uploadMoreInfo from '../../apis/uploadMoreInfo';
+const {handleUpload} = uploadMoreInfo;
 
-       const [fontsLoaded] = useFonts({
-              'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
-          });
-          if (!fontsLoaded) {
-              return null;
-          }
+export default function AddMoreInfo() {
+
+    const [number, setNumber] = useState('')
+    const [location, setLocation] = useState('')
+    const [selectCode, setSelectCode] = useState('');
+    const [modalVisible, setModalVisible] = useState(false);
+    const [profile, setProfile] = useState(null);
+
+    const [fontsLoaded] = useFonts({
+            'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
+        });
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
+          const pickImage = async () => {
+    
+            const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+            if (status !== 'granted') {
+                alert('Permission to access the gallery is required!');
+                return;
+            }
+        
+            const result = await ImagePicker.launchImageLibraryAsync({
+                allowsEditing: true, 
+                quality: 1, 
+            });
+        
+            
+            if (!result.canceled) {
+                console.log('Setted profile picture')
+                setProfile(result.assets[0].uri); 
+                }
+            };
 
         const printInfo = () => {
             console.log('Number => ',number);
             console.log('Location => ', location)
             console.log('Code => ', selectCode)
+            console.log('Profile => ', profile)
+        }
+
+        const triggerUpload = async () => {
+            if(location === '' || number === '' || profile === null)
+            {
+                printInfo();
+                return ;
+            }
+            
+            console.log('Triggered upload..')
+            await handleUpload(profile, number, location);
+            
         }
     
   return (
@@ -43,9 +84,14 @@ export default function AddMoreInfo() {
                         <View style={{alignItems : 'center', justifyContent : 'center',}}>
                             <TouchableOpacity onPress={()=>{setModalVisible(true)}}>
                                 <View style={{alignItems : 'center', justifyContent : 'space-evenly', height : height * 0.19}}>
-                                    <View style={{alignItems : 'center', justifyContent : 'center',backgroundColor : 'white', width : width * 0.2, height : height * 0.1, borderRadius : width * 0.1, elevation: 10}}>
-                                        <Image source={require('../../assets/icons/icnAddImage.png')} style={{tintColor:'black', width : width * 0.09, height : height * 0.04}}></Image>
+                                <View style={{alignItems : 'center', justifyContent : 'center',backgroundColor : 'white', width : width * 0.2, height : height * 0.1, borderRadius : width * 0.1, elevation: 10}}>
+                                          {profile ? (
+                                                <Image source={{ uri: profile }} style={{ width: width * 0.2, height: height * 0.1,resizeMode: 'contain', borderRadius : width * 0.1,}} />
+                                            ) : (
+                                                <Image source={require('../../assets/icons/icnAddImage.png')} style={{ width: width * 0.09, height: height * 0.04, resizeMode: 'contain' }} />
+                                            )}
                                     </View>
+
                                     <Text style={text.smallBold}>Profile Photo</Text>
                                 </View>
                             </TouchableOpacity>
@@ -56,7 +102,7 @@ export default function AddMoreInfo() {
                             visible={modalVisible}
                             onRequestClose={() => setModalVisible(false)}
                             >
-                            <BottomSelectProfile onClose={() => setModalVisible(false)} />
+                            <BottomSelectProfile onClose={() => setModalVisible(false)} onPressProfilePicker={pickImage} />
                         </Modal>
                 </View>
 
@@ -104,7 +150,7 @@ export default function AddMoreInfo() {
            </View>
 
             <View style={{justifyContent: 'center', alignItems : 'center', marginTop: height * 0.1}}>
-                <TouchableOpacity style={[{width : width * 0.8, height : height * 0.06, borderRadius : width * 0.1, justifyContent:'center',}]} onPress={printInfo} >
+                <TouchableOpacity style={[{width : width * 0.8, height : height * 0.06, borderRadius : width * 0.1, justifyContent:'center',}]} onPress={triggerUpload} >
                         <LinearGradient
                         colors={[colors.primary, colors.secondary]}
                         start={{ x: 0, y: 0 }}
@@ -115,7 +161,6 @@ export default function AddMoreInfo() {
                         </LinearGradient>
                 </TouchableOpacity>
             </View>
-
         </View>
     </SafeAreaView>
   );
