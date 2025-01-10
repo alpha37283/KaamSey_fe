@@ -23,6 +23,7 @@ import SearchBar from 'react-native-elements/dist/searchbar/SearchBar-ios';
 import ChatStack from './src/components/stackComponents/chatStack';
 import MessagePage from './src/screens/messagePage';
 import ChatList from './src/screens/chatListPage';
+import AddMoreInfo from './src/screens/addMoreInfo';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,9 +32,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     
-    <NavigationContainer>
-      <ChatStack></ChatStack>
-    </NavigationContainer>
+    <AddMoreInfo></AddMoreInfo>
   );
 }
 
