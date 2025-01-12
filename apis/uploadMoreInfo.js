@@ -3,7 +3,7 @@ import userDataStore from '../asyncStorage/userDataStore';
 
 const { getData } = userDataStore;
 
-export const uploadMoreInfo = async ({ id, data }) => {
+export const uploadMoreInfo = async ({ id, data, navigation }) => {
     try {
        
         const payload = {
@@ -53,6 +53,7 @@ export const uploadMoreInfo = async ({ id, data }) => {
 
         console.log('Uploading . . . . at uploadMoreInfo');
         const responseData = await response.json(); 
+        navigation.navigate('LoginPage')
         return responseData;
     } catch (error) {
        
@@ -65,7 +66,7 @@ export const uploadMoreInfo = async ({ id, data }) => {
 
 
 
-export const handleUpload = async (profile, number, location) => {
+export const handleUpload = async (profile, number, location, navigation) => {
     try {
         console.log('Handling Upload');
         const data = {
@@ -83,7 +84,7 @@ export const handleUpload = async (profile, number, location) => {
         console.log('Checking image at handleUpload - - - - - => ', profile);
 
         
-        const response = await uploadMoreInfo({ id: _id, data });
+        const response = await uploadMoreInfo({ id: _id, data, navigation });
         console.log('Update successful:', response);
 
         return response; 

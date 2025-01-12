@@ -15,7 +15,7 @@ import BottomSelectProfile from '../components/bottomSheetForProfileSelection';
 import uploadMoreInfo from '../../apis/uploadMoreInfo';
 const {handleUpload} = uploadMoreInfo;
 
-export default function AddMoreInfo() {
+export default function AddMoreInfo({navigation}) {
 
     const [number, setNumber] = useState('')
     const [location, setLocation] = useState('')
@@ -66,7 +66,9 @@ export default function AddMoreInfo() {
             }
             
             console.log('Triggered upload..')
-            await handleUpload(profile, number, location);
+            const fullNumber = `${selectCode} ${number}`
+            console.log(fullNumber)
+            await handleUpload(profile, fullNumber, location, navigation);
             
         }
     

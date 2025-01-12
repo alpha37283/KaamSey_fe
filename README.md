@@ -9,7 +9,6 @@ We need to create separate functions for each preventing invoking whole function
 
 - adjusted backend for the services
 - now services will be fetched using seller's id
--
 
 things are getting too cofusing . . . . .
 
@@ -62,3 +61,5 @@ retrieve from async
 chatList is stored in async with key 'chatList'
 
 # Prevent user form entering empty login sign up info
+
+# The issue is that i am storing seller info on signup or login => not an issue

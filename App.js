@@ -33,7 +33,7 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     
-    <NavigationMain/>
+    <AddMoreInfo/>
   );
 }
 
