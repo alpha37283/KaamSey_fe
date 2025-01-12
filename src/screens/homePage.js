@@ -10,6 +10,7 @@ import colors from '../styles/colors/colors';
 import NumsOfActiveOrders from '../components/orderCard';
 import ActiveOrders from '../components/activeOrders';
 import userDataStore from '../../asyncStorage/userDataStore';
+import { useFonts } from 'expo-font';
 
 const {getData} = userDataStore;
 
@@ -51,6 +52,14 @@ function HomePage() {
       isMounted = false;
     };
   }, []);
+
+  const [fontsLoaded] = useFonts({
+              'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
+              'PEB' : require('../../assets/fonts/Poppins-ExtraBold.ttf')
+          });
+          if (!fontsLoaded) {
+              return null;
+          }
 
   // Loading state
   if (loading) {

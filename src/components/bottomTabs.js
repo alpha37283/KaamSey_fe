@@ -11,6 +11,7 @@ import HomePage from '../screens/homePage';
 import colors from '../styles/colors/colors';
 import OrderStack from './stackComponents/orderStack';
 import OrderListPage from '../screens/orderListPage';
+import SettingPage from '../screens/settingPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -85,6 +86,14 @@ export default function BottomTabsBar() {
                 <Image source={require('../../assets/icons/icnOrder.png')} 
                 style={{ width: width * 0.1, height: height * 0.1, tintColor: focused ? '#4ADE80' : 'black', resizeMode : "contain"}}/>
               ),
+            }}
+        />
+        <Tab.Screen name='Settings' component={SettingPage} 
+            options={{
+              tabBarIcon : ({focused}) => (
+                <Image source={require('../../assets/icons/icnSetting.png')}
+                style={{ width: width * 0.1, height: height * 0.1, tintColor: focused ? '#4ADE80' : 'black', resizeMode : "contain"}}/>
+              )
             }}
         />
       </Tab.Navigator>
