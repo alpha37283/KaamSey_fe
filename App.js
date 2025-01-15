@@ -27,6 +27,9 @@ import AddMoreInfo from './src/screens/addMoreInfo';
 import ImagePicker from './src/components/imagePicker';
 import SettingPage from './src/screens/settingPage';
 
+import NavigationActivePaused from './src/navigation/navigationActivePaused';
+import ManageServices from './src/screens/ManageServices';
+
 
 const Stack = createNativeStackNavigator();
 
@@ -34,9 +37,9 @@ const Stack = createNativeStackNavigator();
 function App() {
   return (
     
-    <NavigationContainer>
-      <BottomTabsBar/>
-    </NavigationContainer>
+<NavigationContainer>
+  <BottomTabsBar/>
+</NavigationContainer>
   );
 }
 

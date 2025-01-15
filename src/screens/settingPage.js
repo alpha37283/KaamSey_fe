@@ -8,7 +8,7 @@ import userDataStore from '../../asyncStorage/userDataStore';
 const {getData} = userDataStore;
 
 const {width, height} = Dimensions.get('window')
-export default function SettingPage() {
+export default function SettingPage({navigation}) {
 
     const [name, setName] = useState('')
     const [profle, setProfile] = useState(null)
@@ -46,11 +46,8 @@ export default function SettingPage() {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.tertiary}}>
-    <View style={{padding: width * 0.05, marginTop : height * 0.02}}>
+    <View style={{padding: width * 0.05,  alignItems : 'center', justifyContent : 'center',height : height * 0.15, marginTop : height * 0.02}}>
             <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03}}>Settings</Text>
-            <TouchableOpacity onPress={()=>{navigation.navigate('OrderList')}}>
-            <Image source={require('../../assets/icons/back.png')} style={{width : width * 0.07, height : height * 0.04, tintColor : 'white'}}/>
-            </TouchableOpacity>
     </View>
     <View style={{backgroundColor : 'white',flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1, padding : width * 0.07}}>
         <TouchableOpacity style={{flexDirection : 'row', alignItems : 'center'}}>
@@ -64,7 +61,7 @@ export default function SettingPage() {
         </TouchableOpacity>
         <Divider width={1} color="#CDD1D0" style={{ width: width * 0.9, marginTop : height * 0.02}} />
 
-        <TouchableOpacity style={{flexDirection : 'row',  marginTop : height * 0.03, alignItems : 'center', justifyContent : 'flex-start'}}>
+        <TouchableOpacity style={{flexDirection : 'row',  marginTop : height * 0.03, alignItems : 'center', justifyContent : 'flex-start'}} onPress={()=>{navigation.navigate('ManageServices')}}>
             <View style={{backgroundColor : colors.primary,width : width * 0.1, height : height * 0.05,  borderRadius : width * 0.05, alignItems : 'center', justifyContent : 'center', elevation : 20}}>
                 <Image source={require('../../assets/icons/icnKey.png')} style={{width : width * 0.08, height : height * 0.04,  borderRadius : width * 0.03, }}/>
             </View>

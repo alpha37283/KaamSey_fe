@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Image, TouchableOpacity, useWindowDimensions } from 'react-native';
+import { View, StyleSheet, Image, TouchableOpacity, useWindowDimensions, Settings } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -12,6 +12,8 @@ import colors from '../styles/colors/colors';
 import OrderStack from './stackComponents/orderStack';
 import OrderListPage from '../screens/orderListPage';
 import SettingPage from '../screens/settingPage';
+
+import SettingStack from './stackComponents/settingStack';
 
 const Tab = createBottomTabNavigator();
 
@@ -88,7 +90,7 @@ export default function BottomTabsBar() {
               ),
             }}
         />
-        <Tab.Screen name='Settings' component={SettingPage} 
+        <Tab.Screen name='SettingStack' component={SettingStack} 
             options={{
               tabBarIcon : ({focused}) => (
                 <Image source={require('../../assets/icons/icnSetting.png')}

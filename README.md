@@ -63,3 +63,11 @@ chatList is stored in async with key 'chatList'
 # Prevent user form entering empty login sign up info
 
 # The issue is that i am storing seller info on signup or login => not an issue
+
+# ACTIVE PAUSED TAB
+
+- create a page ManageServices
+- on it display the navigation
+- fetch active and paused services separately
+- store them in asyn storage
+- display them from async stroge
