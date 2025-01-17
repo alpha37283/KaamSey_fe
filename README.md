@@ -75,3 +75,7 @@ chatList is stored in async with key 'chatList'
 - manage backend for setting page
 - manage backend for gig editing
 - manage backend for profile Setting
+
+# NOTE: Pick image is reuseable
+
+# to update an image its a different method to update and image

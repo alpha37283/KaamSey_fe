@@ -6,6 +6,8 @@ import { Divider } from 'react-native-elements';
 import { useFonts } from 'expo-font';
 import userDataStore from '../../asyncStorage/userDataStore';
 const {getData} = userDataStore;
+import { useFocusEffect } from '@react-navigation/native';
+
 
 const {width, height} = Dimensions.get('window')
 export default function SettingPage({navigation}) {
@@ -14,26 +16,33 @@ export default function SettingPage({navigation}) {
     const [profle, setProfile] = useState(null)
     const [bio, setBio] = useState('')
 
-    useEffect(()=>{
 
+
+    useFocusEffect(
+      React.useCallback(() => {
         const getNameAndImage = async () => {
-          try{
+          try {
             const sellerData = await getData('seller');
             setName(sellerData.name);
-            setBio(sellerData.bio)
-            console.log('name is',name)
-            const imageBase64Uri = `data:${sellerData.profileImage.contentType};base64,${sellerData.profileImage.data}`
-            setProfile(imageBase64Uri)
+            setBio(sellerData.bio);
+            console.log('name is', name);
+            const imageBase64Uri = `data:${sellerData.profileImage.contentType};base64,${sellerData.profileImage.data}`;
+            setProfile(imageBase64Uri);
+          } catch (e) {
+            console.log('Error while setting name and image on settings');
           }
-          catch(e)
-          {
-            console.log('Error while setting name and image on settings')
-          }
-        }
-
+        };
+    
         getNameAndImage();
-
-    }, [])
+    
+        return () => {
+          setName('');
+          setBio('');
+          setProfile(null);
+        };
+      }, [])
+    );
+    
 
       const [fontsLoaded] = useFonts({
             'PM': require('../../assets/fonts/Poppins-Medium.ttf'),

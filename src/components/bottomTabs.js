@@ -22,7 +22,7 @@ function CustomTabBar({ state, descriptors, navigation }) {
   const { width, height } = useWindowDimensions();
 
   return (
-    <View style={{ padding: 15, position: 'relative' }}>
+    <View style={{ padding: 15, position: 'relative', }}>
       <LinearGradient
         colors={[colors.primary, colors.secondary]}
         start={{ x: 0, y: 1 }}
@@ -30,7 +30,7 @@ function CustomTabBar({ state, descriptors, navigation }) {
         style={styles.gradientCard}
       />
       <View
-        style={[ styles.whiteCard, { flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center' }, ]}>
+        style={[ styles.whiteCard, { flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center',  }, ]}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
           const isFocused = state.index === index;
@@ -105,6 +105,7 @@ export default function BottomTabsBar() {
 
 const styles = StyleSheet.create({
   gradientCard: {
+    
     position: 'absolute',
     left: 24,
     right: 8,
@@ -116,6 +117,7 @@ const styles = StyleSheet.create({
     borderColor: 'black',
   },
   whiteCard: {
+
     backgroundColor: 'white',
     borderRadius: 90,
     borderWidth: 1,
