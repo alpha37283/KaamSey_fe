@@ -30,16 +30,17 @@ import SettingPage from './src/screens/settingPage';
 import NavigationActivePaused from './src/navigation/navigationActivePaused';
 import ManageServices from './src/screens/ManageServices';
 
+import UserProfileSetting from './src/screens/userProfileSetting';
+
 
 const Stack = createNativeStackNavigator();
 
 
 function App() {
   return (
-    
-<NavigationContainer>
-  <BottomTabsBar/>
-</NavigationContainer>
+    <NavigationContainer>
+      <BottomTabsBar></BottomTabsBar>
+    </NavigationContainer>
   );
 }
 

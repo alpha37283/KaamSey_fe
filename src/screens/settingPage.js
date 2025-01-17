@@ -50,7 +50,7 @@ export default function SettingPage({navigation}) {
             <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03}}>Settings</Text>
     </View>
     <View style={{backgroundColor : 'white',flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1, padding : width * 0.07}}>
-        <TouchableOpacity style={{flexDirection : 'row', alignItems : 'center'}}>
+        <TouchableOpacity style={{flexDirection : 'row', alignItems : 'center'}} onPress={()=>{navigation.navigate('ProfileSetting')}}>
             <View style={{width : width * 0.18, height : height * 0.09, borderRadius : width * 0.1,elevation : 20}}>
                 <Image source={{uri : profle}} style={{width : width * 0.18, height : height * 0.09, borderRadius : width * 0.1}}/>
             </View>
@@ -71,7 +71,7 @@ export default function SettingPage({navigation}) {
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{flexDirection : 'row',  marginTop : height * 0.03, alignItems : 'center', justifyContent : 'flex-start'}}>
+        <TouchableOpacity style={{flexDirection : 'row',  marginTop : height * 0.03, alignItems : 'center', justifyContent : 'flex-start'}} >
             <View style={{backgroundColor : colors.primary,width : width * 0.1, height : height * 0.05,  borderRadius : width * 0.05, alignItems : 'center', justifyContent : 'center', elevation : 20}}>
                 <Image source={require('../../assets/icons/icnBell.png')} style={{width : width * 0.07, height : height * 0.035,  borderRadius : width * 0.03, }}/>
             </View>

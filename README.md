@@ -71,3 +71,7 @@ chatList is stored in async with key 'chatList'
 - fetch active and paused services separately
 - store them in asyn storage
 - display them from async stroge
+
+- manage backend for setting page
+- manage backend for gig editing
+- manage backend for profile Setting
