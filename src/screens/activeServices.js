@@ -7,7 +7,7 @@ import colors from '../styles/colors/colors';
 import { useFonts } from 'expo-font';
 const {width, height} = Dimensions.get('window')
 
-export default function ActiveServices() {
+export default function ActiveServices({navigation}) {
 
   const [fontsLoaded] = useFonts({
       'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
@@ -36,7 +36,7 @@ export default function ActiveServices() {
               </View>
           </View>
      <View style={{marginTop : height * 0.02}}>
-        <TouchableOpacity style={[{width : width * 0.5, height : height * 0.06,  justifyContent:'center',}]} >
+        <TouchableOpacity style={[{width : width * 0.5, height : height * 0.06,  justifyContent:'center',}]} onPress={()=>{navigation.navigate('CreateService')}}>
                     <LinearGradient
                     colors={[colors.primary, colors.secondary]}
                     start={{ x: 0, y: 0 }}

@@ -32,6 +32,8 @@ import ManageServices from './src/screens/ManageServices';
 
 import UserProfileSetting from './src/screens/userProfileSetting';
 
+import CreateService from './src/screens/createService';
+
 
 const Stack = createNativeStackNavigator();
 

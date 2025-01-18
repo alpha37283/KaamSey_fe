@@ -1,9 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet, Dimensions, Image, TextInput, } from 'react-native';
-import { useState } from 'react';
-import { useEffect } from 'react';
-
-
 import { SelectList } from 'react-native-dropdown-select-list';
 import countryCode from '../rawData/countryCode';
 import colors from '../styles/colors/colors';
