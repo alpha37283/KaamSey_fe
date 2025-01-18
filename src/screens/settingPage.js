@@ -7,6 +7,8 @@ import { useFonts } from 'expo-font';
 import userDataStore from '../../asyncStorage/userDataStore';
 const {getData} = userDataStore;
 import { useFocusEffect } from '@react-navigation/native';
+import fetchSeller from '../../apis/fetchSeller';
+const {fetchImage} = fetchSeller;
 
 
 const {width, height} = Dimensions.get('window')
@@ -26,13 +28,17 @@ export default function SettingPage({navigation}) {
             setName(sellerData.name);
             setBio(sellerData.bio);
             console.log('name is', name);
-            const imageBase64Uri = `data:${sellerData.profileImage.contentType};base64,${sellerData.profileImage.data}`;
-            setProfile(imageBase64Uri);
           } catch (e) {
             console.log('Error while setting name and image on settings');
           }
         };
-    
+
+        const getImage = async () => {
+        const image = await fetchImage();
+        const imageBase64Uri = `data:${image.profileImage.contentType};base64,${image.profileImage.data}`
+        setProfile(imageBase64Uri)
+        }
+        getImage();
         getNameAndImage();
     
         return () => {
@@ -59,7 +65,7 @@ export default function SettingPage({navigation}) {
             <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03}}>Settings</Text>
     </View>
     <View style={{backgroundColor : 'white',flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1, padding : width * 0.07}}>
-        <TouchableOpacity style={{flexDirection : 'row', alignItems : 'center'}} onPress={()=>{navigation.navigate('ProfileSetting')}}>
+        <TouchableOpacity style={{flexDirection : 'row', alignItems : 'center'}} onPress={()=>{navigation.navigate('ProfileSetting',  profle)}}>
             <View style={{width : width * 0.18, height : height * 0.09, borderRadius : width * 0.1,elevation : 20}}>
                 <Image source={{uri : profle}} style={{width : width * 0.18, height : height * 0.09, borderRadius : width * 0.1}}/>
             </View>
@@ -80,7 +86,7 @@ export default function SettingPage({navigation}) {
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{flexDirection : 'row',  marginTop : height * 0.03, alignItems : 'center', justifyContent : 'flex-start'}} >
+        <TouchableOpacity style={{flexDirection : 'row',  marginTop : height * 0.03, alignItems : 'center', justifyContent : 'flex-start'}} onPress={()=>{navigation.navigate('CreateService')}}>
             <View style={{backgroundColor : colors.primary,width : width * 0.1, height : height * 0.05,  borderRadius : width * 0.05, alignItems : 'center', justifyContent : 'center', elevation : 20}}>
                 <Image source={require('../../assets/icons/icnBell.png')} style={{width : width * 0.07, height : height * 0.035,  borderRadius : width * 0.03, }}/>
             </View>

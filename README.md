@@ -79,3 +79,14 @@ chatList is stored in async with key 'chatList'
 # NOTE: Pick image is reuseable
 
 # to update an image its a different method to update and image
+
+# too large image import RNFS from 'react-native-fs';
+
+const saveImageLocally = async (base64Image, filename) => {
+const path = `${RNFS.DocumentDirectoryPath}/${filename}`;
+await RNFS.writeFile(path, base64Image, 'base64');
+return path; // Return the file path for later use
+};
+issue solution
+
+=>> now images are being fetched directly from api, not asnc change this back to asyn and upload smaller images

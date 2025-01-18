@@ -24,9 +24,14 @@ const getSellerAndStore = async ({_id}) => {
 
         const data = await response.json();
         const {sellerInfo} = data;
+
+        const { profileImage, ...restOfSellerInfo } = sellerInfo;
+
+        console.log('Rest of seller info =========================> ', restOfSellerInfo);
+
         
         try{
-            await storeAsyncData('seller', sellerInfo);
+            await storeAsyncData('seller', restOfSellerInfo);
            
         }
         catch(e)
@@ -83,4 +88,40 @@ const getServicesAndStore = async ({_id}) => {
 };
 
 
-export default {getSellerAndStore , getServicesAndStore };
+const fetchImage = async () => {
+  try {
+    const id = await getData('user_id'); 
+    if (!id) {
+      throw new Error('User ID not found.');
+    }
+
+    const response = await fetch(`http://${LOCAL_HOST}/api/sellers/image/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch image: ${response.status} ${response.statusText}`);
+    }
+
+    // For images, handle based on content type
+    const contentType = response.headers.get('Content-Type');
+    if (contentType && contentType.includes('image')) {
+      const data = await response.blob(); // Fetch as binary blob
+      const imageUri = URL.createObjectURL(data); // Convert to URI
+    //  console.log('Image URI:', imageUri);
+    } else {
+      const data = await response.json(); // Fallback for non-image responses
+      
+      return data;
+    }
+  } catch (e) {
+    console.log('Error while fetching image:', e);
+  }
+};
+
+
+
+export default {getSellerAndStore , getServicesAndStore, fetchImage };

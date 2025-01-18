@@ -15,6 +15,8 @@ import patchSeller from '../../apis/patchSeller';
 import BottomSelectProfile from '../components/bottomSheetForProfileSelection';
 import * as ImagePicker from 'expo-image-picker';
 const {uploadUserProfileSetting} = patchSeller;
+import fetchSeller from '../../apis/fetchSeller';
+const {fetchImage} = fetchSeller;
 
 
 
@@ -71,9 +73,10 @@ export default function UserProfileSetting() {
             gender,
             contactNumber: contact,
             city,
-            profileImage: profile, 
+            profilePicture: profile, 
             };
-        
+            
+            console.log('Updated seller is : ===================================> ', updatedSeller)
             await storeAsyncData('seller', updatedSeller); 
             setSeller(updatedSeller); 
         
@@ -100,7 +103,8 @@ export default function UserProfileSetting() {
                     setContact(seller.contactNumber)
                     setCity(seller.city)
                     setProfile(seller.profileImage)
-                    console.log(Object.keys(seller))
+                    console.log(Object.keys(seller)
+                )
                     
                 }
 
@@ -112,6 +116,14 @@ export default function UserProfileSetting() {
             console.log('An error occured while getting data : ', e)
         }
 
+
+        const getImage = async () => {
+        const image = await fetchImage();
+        const imageBase64Uri = `data:${image.profileImage.contentType};base64,${image.profileImage.data}`
+        setProfile(imageBase64Uri)
+        await storeAsyncData('seller_image', image)
+        }
+        getImage()
         
     }, [])
 
@@ -135,7 +147,7 @@ const [fontsLoaded] = useFonts({
                       {profile ? (
                             <Image source={{ uri: profile }} style={{width : width * 0.25, height : height * 0.13, borderRadius : width * 0.15, marginTop : height * 0.12 }}/>
                         ) : (
-                            <Image source={require('../../assets/icons/icnAddImage.png')} style={{width : width * 0.25, height : height * 0.13, borderRadius : width * 0.15, marginTop : height * 0.12 }}/>
+                            <Image source={require('../../assets/icons/icnAddImage.png')} style={{width : width * 0.25, height : height * 0.13, borderRadius : width * 0.15, marginTop : height * 0.12, resizeMode : 'contain'}}/>
                         )}
                 </TouchableOpacity>
                 <Text style={[text.mediumExtraBold,{marginTop : height * 0.015}]}>{name}</Text>

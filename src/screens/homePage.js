@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, Text, Image, useWindowDimensions, ScrollView, ActivityIndicator} from 'react-native';
+import { useFocusEffect } from '@react-navigation/native';
 import { useState } from 'react';
 import EarningCard from '../components/earningCard';
 import IncomeCard from '../components/incomeCard';
@@ -11,6 +12,9 @@ import NumsOfActiveOrders from '../components/orderCard';
 import ActiveOrders from '../components/activeOrders';
 import userDataStore from '../../asyncStorage/userDataStore';
 import { useFonts } from 'expo-font';
+import fetchSeller from '../../apis/fetchSeller';
+const {fetchImage} = fetchSeller;
+import { getDate } from 'date-fns';
 
 const {getData} = userDataStore;
 
@@ -24,34 +28,40 @@ function HomePage() {
   const { width, height } = useWindowDimensions();
   const [profileImage, setProfileImage] = useState('')
 
-  useEffect(() => {
-    let isMounted = true;
-
-    const fetchData = async () => {
-      try {
-        const servicesData = await getData('services');
-        const sellerData = await getData('seller');
-
-        if (isMounted) {
-          setServices(servicesData);
-          setSeller(sellerData);
-          const imageBase64Uri = `data:${sellerData.profileImage.contentType};base64,${sellerData.profileImage.data}`
-          setProfileImage(imageBase64Uri)
-      
+  useFocusEffect(
+    React.useCallback(() => {
+      let isMounted = true;
+  
+      const fetchData = async () => {
+        try {
+          const servicesData = await getData('services');
+          const sellerData = await getData('seller');
+  
+          if (isMounted) {
+            setServices(servicesData);
+            setSeller(sellerData);
+          }
+        } catch (error) {
+          console.error('An error occurred while fetching data:', error);
+        } finally {
+          if (isMounted) setLoading(false);
         }
-      } catch (error) {
-        console.error('An error occurred while fetching data:', error);
-      } finally {
-        if (isMounted) setLoading(false);
-      }
-    };
-
-    fetchData();
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+      };
+  
+      const getImage = async () => {
+        const image = await fetchImage();
+        const imageBase64Uri = `data:${image.profileImage.contentType};base64,${image.profileImage.data}`;
+        setProfileImage(imageBase64Uri);
+      };
+  
+      getImage();
+      fetchData();
+  
+      return () => {
+        isMounted = false;
+      };
+    }, [])
+  );
 
   const [fontsLoaded] = useFonts({
               'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
