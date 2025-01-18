@@ -94,4 +94,4 @@ export const handleUpload = async (profile, number, location, navigation) => {
     }
 };
 
-export default {handleUpload};
+export default {handleUpload, };

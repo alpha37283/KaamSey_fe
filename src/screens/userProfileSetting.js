@@ -14,7 +14,8 @@ import { useNavigation } from '@react-navigation/native';
 import patchSeller from '../../apis/patchSeller';
 import BottomSelectProfile from '../components/bottomSheetForProfileSelection';
 import * as ImagePicker from 'expo-image-picker';
-const {updateSeller} = patchSeller;
+const {uploadUserProfileSetting} = patchSeller;
+
 
 
 
@@ -40,46 +41,50 @@ export default function UserProfileSetting() {
 
     const pickImage = async () => {
         
-                const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-                if (status !== 'granted') {
-                    alert('Permission to access the gallery is required!');
-                    return;
-                }
-            
-                const result = await ImagePicker.launchImageLibraryAsync({
-                    allowsEditing: true, 
-                    quality: 1, 
-                });
-            
-                
-                if (!result.canceled) {
-                    console.log('Setted profile picture')
-                    setProfile(result.assets[0].uri); 
-                    }
-                };
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+        alert('Permission to access the gallery is required!');
+        return;
+    }
+
+    const result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true, 
+        quality: 1, 
+    });
+
+    
+    if (!result.canceled) {
+        console.log('Setted profile picture')
+        setProfile(result.assets[0].uri); 
+        }
+    };
 
     
 
 
     const saveNewSeller = async () => {
         try {
-          const updatedSeller = {
-            ...seller, // Preserve existing keys
+            const updatedSeller = {
+            ...seller, 
             name,
             bio,
             gender,
             contactNumber: contact,
             city,
-            profile
-          };
-          await storeAsyncData('seller', updatedSeller); // Save merged object to AsyncStorage
-          setSeller(updatedSeller); // Update state with new data
-          patchSeller.updateSeller();
-          alert('Profile saved successfully!');
+            profileImage: profile, 
+            };
+        
+            await storeAsyncData('seller', updatedSeller); 
+            setSeller(updatedSeller); 
+        
+            await uploadUserProfileSetting(updatedSeller); 
+            alert('Profile saved successfully!');
         } catch (e) {
-          console.error('Failed to save profile: ', e);
+            console.error('Failed to save profile: ', e);
+            alert('Failed to save profile. Please try again.');
         }
-      }
+        };
+                  
     
 
     useEffect(()=>{
@@ -94,6 +99,7 @@ export default function UserProfileSetting() {
                     setGender(seller.gender)
                     setContact(seller.contactNumber)
                     setCity(seller.city)
+                    setProfile(seller.profileImage)
                     console.log(Object.keys(seller))
                     
                 }
