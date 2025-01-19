@@ -9,20 +9,42 @@ import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
 
 import BottomSelectProfile from '../components/bottomSheetForProfileSelection';
+import { ServiceContext } from './context/createServiceContext';
+import { useContext } from 'react';
 
 const { width, height } = Dimensions.get('window');
 
 export default function CreateService({navigation}) {
-    const [title, setTitle] = useState('');
-    const [desc, setDesc] = useState('');
-    const [category, setCategory] = useState('');
-    const [tags, setTags] = useState('');
-    const [hours, setHours] = useState('');
-    const [workers, setWorkers] = useState('');
-    const [price, setPrice] = useState('');
-    const [img, setImg] = useState(null)
-    const [modalVisible, setModalVisible] = useState(false);
+    // const [title, setTitle] = useState('');
+    // const [desc, setDesc] = useState('');
+    // const [category, setCategory] = useState('');
+    // const [tags, setTags] = useState('');
+    // const [hours, setHours] = useState('');
+    // const [workers, setWorkers] = useState('');
+    // const [price, setPrice] = useState('');
+    // const [img, setImg] = useState(null)
+    // const [modalVisible, setModalVisible] = useState(false);
     
+    const {
+        title,
+        setTitle,
+        desc,
+        setDesc,
+        category,
+        setCategory,
+        tags,
+        setTags,
+        hours,
+        setHours,
+        workers,
+        setWorkers,
+        price,
+        setPrice,
+        img,
+        setImg,
+      } = useContext(ServiceContext);
+
+      const [modalVisible, setModalVisible] = useState(false)
 
 
     
@@ -113,7 +135,9 @@ export default function CreateService({navigation}) {
                              <TouchableOpacity onPress={()=>{setModalVisible(true)}}>
                                 <View style={{alignItems : 'center', justifyContent : 'space-evenly', height : height * 0.19}}>
                                     <View style={{alignItems : 'center', justifyContent : 'center',backgroundColor : 'white', width : width * 0.2, height : height * 0.1, borderRadius : width * 0.1, elevation: 10}}>
-                                        <Image source={require('../../assets/icons/icnAddImage.png')} style={{ width: width * 0.09, height: height * 0.04, resizeMode: 'contain' }} />      
+                                        {img ? (<Image source={{uri : img}} style={{ width: width * 0.09, height: height * 0.04, resizeMode: 'contain' }} />      ) 
+                                        : (<Image source={require('../../assets/icons/icnAddImage.png')} style={{ width: width * 0.09, height: height * 0.04, resizeMode: 'contain' }} />      )}
+                                        
                                     </View>
                                 </View>
                             </TouchableOpacity>
@@ -131,7 +155,7 @@ export default function CreateService({navigation}) {
 
 
                         <View style={{marginTop : height * 0.02, alignItems : 'center'}}>
-                            <TouchableOpacity style={[{width : width * 0.85, height : height * 0.06,  justifyContent:'center',}]} onPress={()=>{console.log('publish')}}>
+                            <TouchableOpacity style={[{width : width * 0.85, height : height * 0.06,  justifyContent:'center',}]} onPress={()=>{navigation.navigate('ServiceOverview')}}>
                                   <LinearGradient
                                   colors={[colors.primary, colors.secondary]}
                                   start={{ x: 0, y: 0 }}
