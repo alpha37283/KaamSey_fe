@@ -57,7 +57,7 @@ export default function CreateServiceOverview({navigation}) {
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
               <View style={{ }}>
                         <View style={{ flexDirection: 'row', justifyContent: 'flex-start',padding: width * 0.03,  }}>
-                            <TouchableOpacity style={{ width: width * 0.09, height: height * 0.045, alignItems: 'center', justifyContent: 'center', borderRadius: width * 0.05, borderColor: 'black', borderWidth: 2}} onPress={()=>{navigation.navigate('ManageServices')}}>
+                            <TouchableOpacity style={{ width: width * 0.09, height: height * 0.045, alignItems: 'center', justifyContent: 'center', borderRadius: width * 0.05, borderColor: 'black', borderWidth: 2}} onPress={()=>{navigation.navigate('CreateService')}}>
                                 <Image source={require('../../assets/icons/back.png')} style={{ width: width * 0.07, height: height * 0.04 }} />
                             </TouchableOpacity>
                             <Text style={[text.largeExtraBold, { marginLeft: width * 0.11 }]}>Service Overview</Text>

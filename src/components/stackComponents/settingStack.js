@@ -18,7 +18,6 @@ function SettingStack() {
       <Stack.Screen name="ManageServices" component={ManageServices} />
       <Stack.Screen name="ProfileSetting" component={UserProfileSetting}/>
       <Stack.Screen name="CreateService" component={CreateService}/>
-      <Stack.Screen name='Next' component={NextComponent}/>
       <Stack.Screen name="ServiceOverview" component={CreateServiceOverview}/>
     </Stack.Navigator>
 </ServiceProvider>    
