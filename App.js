@@ -34,6 +34,7 @@ import UserProfileSetting from './src/screens/userProfileSetting';
 
 import CreateService from './src/screens/createService';
 import CreateServiceOverview from './src/screens/createdServiceOverview';
+import NotificationSetting from './src/screens/notificationSetting';
 
 
 const Stack = createNativeStackNavigator();
@@ -41,9 +42,7 @@ const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <NavigationContainer>
-      <BottomTabsBar></BottomTabsBar>
-    </NavigationContainer>
+    <NotificationSetting/>
   );
 }
 

@@ -86,7 +86,7 @@ export default function SettingPage({navigation}) {
             </View>
         </TouchableOpacity>
 
-        <TouchableOpacity style={{flexDirection : 'row',  marginTop : height * 0.03, alignItems : 'center', justifyContent : 'flex-start'}} onPress={()=>{console.log('Icon Bell')}}>
+        <TouchableOpacity style={{flexDirection : 'row',  marginTop : height * 0.03, alignItems : 'center', justifyContent : 'flex-start'}} onPress={()=>{navigation.navigate('NotificationSetting')}}>
             <View style={{backgroundColor : colors.primary,width : width * 0.1, height : height * 0.05,  borderRadius : width * 0.05, alignItems : 'center', justifyContent : 'center', elevation : 20}}>
                 <Image source={require('../../assets/icons/icnBell.png')} style={{width : width * 0.07, height : height * 0.035,  borderRadius : width * 0.03, }}/>
             </View>
