@@ -29,7 +29,7 @@ export default function NotificationSetting({ navigation }) {
     const [ratingRem, setRatingRem] = useState(false);
     const [pAndT, setPAndT] = useState(false);
     const [accountNotific, setAccountNotific] = useState(false)
-    
+
     const [fontsLoaded] = useFonts({
         'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
         'PEB': require('../../assets/fonts/Poppins-ExtraBold.ttf'),
@@ -44,7 +44,7 @@ export default function NotificationSetting({ navigation }) {
                     <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop : height * 0.03}}>
                         <TouchableOpacity
                             style={{ width: width * 0.09, height: height * 0.045, alignItems: 'center', justifyContent: 'center', borderRadius: width * 0.05, borderColor: 'black', borderWidth: 2 }}
-                            onPress={() => navigation.navigate('ManageServices')}>
+                            onPress={() => navigation.navigate('Settings')}>
                             <Image source={require('../../assets/icons/back.png')} style={{ width: width * 0.07, height: height * 0.04 }} />
                         </TouchableOpacity>
                         <Text style={{ ...text.largeExtraBold, marginLeft: width * 0.15 }}>Notifications</Text>

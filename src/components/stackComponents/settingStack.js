@@ -8,6 +8,7 @@ import { ServiceProvider } from '../../screens/context/createServiceContext';
 import NextComponent from '../../screens/nextComp';
 import CreateServiceOverview from '../../screens/createdServiceOverview';
 import NotificationSetting from '../../screens/notificationSetting';
+import AvailabilitySetting from '../../screens/availabilitySetting';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,6 +22,7 @@ function SettingStack() {
       <Stack.Screen name="CreateService" component={CreateService}/>
       <Stack.Screen name="ServiceOverview" component={CreateServiceOverview}/>
       <Stack.Screen name="NotificationSetting" component={NotificationSetting}/>
+      <Stack.Screen name="AvailabilitySetting" component={AvailabilitySetting}/>
     </Stack.Navigator>
 </ServiceProvider>    
   );
