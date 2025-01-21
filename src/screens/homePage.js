@@ -1,24 +1,21 @@
-import React, { useEffect } from 'react';
+import React, { useState} from 'react';
 import { View, Text, Image, useWindowDimensions, ScrollView, ActivityIndicator} from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import { useState } from 'react';
+import { useFonts } from 'expo-font';
+
 import EarningCard from '../components/earningCard';
 import IncomeCard from '../components/incomeCard';
 import TotalOrder from '../components/totalOrderCard';
-import text from '../styles/textStyles';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import colors from '../styles/colors/colors';
 import NumsOfActiveOrders from '../components/orderCard';
 import ActiveOrders from '../components/activeOrders';
 import userDataStore from '../../asyncStorage/userDataStore';
-import { useFonts } from 'expo-font';
+import text from '../styles/textStyles';
+import colors from '../styles/colors/colors';
+
 import fetchSeller from '../../apis/fetchSeller';
+
 const {fetchImage} = fetchSeller;
-import { getDate } from 'date-fns';
-
 const {getData} = userDataStore;
-
-
 
 function HomePage() {
 
@@ -71,7 +68,7 @@ function HomePage() {
               return null;
           }
 
-  // Loading state
+
   if (loading) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -81,7 +78,7 @@ function HomePage() {
     );
   }
 
-  // Error state if no data is available
+
   if (!seller || !services) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
@@ -104,8 +101,8 @@ function HomePage() {
           <Text style={[text.mediumExtraBold,{ fontSize: width * 0.08,  color: '#000' }]}>{seller.name}</Text>
           <Text style={[text.mediumExtraBold,{ fontSize: width * 0.08, color: '#4CAF50', marginTop : width * -0.01 }]}>Welcome Back</Text>
         </View>
-        <View style={{ backgroundColor : '#ffffff', borderRadius : width * 0.2, width : width * 0.12, height : width * 0.12, justifyContent : 'center', alignItems : 'center' }}>
-          <Image source={{uri : profileImage}} style={{ width: width * 0.14, height: height * 0.07, borderRadius : width * 0.2}} />
+        <View style={{ backgroundColor : 'white', borderRadius : width * 0.2, width : width * 0.17, height : width * 0.17, justifyContent : 'center', alignItems : 'center' }}>
+          <Image source={{uri : profileImage}} style={{ width: width * 0.17, height: height * 0.17, borderRadius : width * 0.2}} />
         </View>
       </View>
     </View>
@@ -117,15 +114,11 @@ function HomePage() {
     </View>
     <TotalOrder totalOrders={seller.order.total}/>
 
-    <View>
+    <View style={{marginTop : height * 0.02}}>
       <Text style={[text.mediumExtraBold,{marginLeft : width * 0.05}]}>Active Orders</Text>
       <ActiveOrders data={services}/>
-     
-
     </View>
-    
-      
-    </ScrollView>
+</ScrollView>
   
   
   );
