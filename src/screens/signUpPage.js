@@ -60,7 +60,7 @@ export default function SignUp({navigation}) {
         <View style={{marginTop : width * 0.15, width : width * 0.85, alignContent : 'center', justifyContent : 'center', alignSelf : 'center'}} >
                 <Text style={[text.small]}>Your Name</Text>
                 <TextInput
-                    style={[{ height : 40,borderBottomWidth: 0.8,borderBottomColor: 'black' }]}
+                    style={[{ height : height * 0.05,borderBottomWidth: 0.8,borderBottomColor: 'black' }]}
                     keyboardType="additional-name"
                     autoCapitalize="none"
                     value={name}
@@ -69,7 +69,7 @@ export default function SignUp({navigation}) {
                 />
                 <Text style={[text.small, {marginTop : height * 0.02}]}>Your Email</Text>
                 <TextInput
-                    style={[{ height : 40,borderBottomWidth: 0.8,borderBottomColor: 'black' }]}
+                    style={[{ height : height * 0.05,borderBottomWidth: 0.8,borderBottomColor: 'black' }]}
                     keyboardType="email-address"
                     autoCapitalize="none"
                     value={email}
@@ -77,14 +77,14 @@ export default function SignUp({navigation}) {
                 />
                 <Text style={[text.small, {marginTop : height * 0.02}]}>Set Password</Text>
                 <TextInput
-                    style={[{height : 40, borderBottomWidth: 0.8,borderBottomColor: 'black' ,paddingHorizontal: 1  }]}
+                    style={[{height : height * 0.05, borderBottomWidth: 0.8,borderBottomColor: 'black' ,paddingHorizontal: 1  }]}
                     secureTextEntry
                     value={password}
                     onChangeText={setPassword}
                 />
                 <Text style={[text.small, {marginTop : height * 0.02}]}>Confirm Password</Text>
                 <TextInput
-                    style={[{height : 40, borderBottomWidth: 0.8,borderBottomColor: 'black' ,paddingHorizontal: 1  }]}
+                    style={[{height : height * 0.05, borderBottomWidth: 0.8,borderBottomColor: 'black' ,paddingHorizontal: 1  }]}
                     secureTextEntry
                     value={confirmPassword}
                     onChangeText={setConfirmPassword}

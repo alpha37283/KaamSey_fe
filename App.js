@@ -41,7 +41,9 @@ const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <Onboard/>
+    <NavigationContainer>
+      <BottomTabsBar></BottomTabsBar>
+    </NavigationContainer>
   );
 }
 

@@ -55,13 +55,13 @@ export default function LoginPage({navigation}) {
 
 
         <View style={{flexDirection: 'row', justifyContent : 'center', marginTop: height * 0.02}} >
-          <View style={{flexDirection: 'row', marginTop: height * 0.02}} >
-                <View style={{width:width*0.12, height: height*0.06, borderColor:'black', borderWidth: 1, borderRadius: width * 0.1, alignItems : 'center', justifyContent: 'center', right : width * 0.05}} >
+          <View style={{flexDirection: 'row', marginTop: height * 0.02, width : width * 0.5,alignItems : 'center', justifyContent : 'center'}} >
+                <TouchableOpacity style={{width:width*0.12, height: height*0.06, borderColor:'black', borderWidth: 1, borderRadius: width * 0.1, alignItems : 'center', justifyContent: 'center', right : width * 0.05}} >
                         <Image source={require('../../assets/icons/google.png')} style={{width : height * 0.035, height : height * 0.035}} /> 
-                </View>
-                <View style={{width:width*0.12, height: height*0.06, borderColor:'black', borderWidth: 1, borderRadius: width * 0.1, alignItems : 'center', justifyContent: 'center', left : width * 0.05}} >
+                </TouchableOpacity>
+                <TouchableOpacity style={{width:width*0.12, height: height*0.06, borderColor:'black', borderWidth: 1, borderRadius: width * 0.1, alignItems : 'center', justifyContent: 'center', left : width * 0.05}} >
                         <Image source={require('../../assets/icons/apple.png')} style={{width : height * 0.035, height : height * 0.035}} /> 
-                </View>
+                </TouchableOpacity>
           </View>
         </View>
 
@@ -78,7 +78,7 @@ export default function LoginPage({navigation}) {
         <View style={{marginTop : width * 0.04, width : width * 0.85, alignContent : 'center', justifyContent : 'center', alignSelf : 'center'}} >
             <Text style={[text.small]}>Your Email</Text>
                 <TextInput
-                    style={[{ height : 35,borderBottomWidth: 0.8,borderBottomColor: 'black' }]}
+                    style={[{ height : height * 0.05, borderBottomWidth: 0.8,borderBottomColor: 'black' }]}
                     keyboardType="email-address"
                     autoCapitalize="none"
                     blurOnSubmit={false}
@@ -87,7 +87,7 @@ export default function LoginPage({navigation}) {
                 />
                 <Text style={[text.small,{marginTop: height * 0.02}]}>Password</Text>
                 <TextInput
-                    style={[{height : 35, borderBottomWidth: 0.8,borderBottomColor: 'black' ,paddingHorizontal: 1  }]}
+                    style={[{height : height * 0.05, borderBottomWidth: 0.8,borderBottomColor: 'black' ,paddingHorizontal: 1  }]}
                     secureTextEntry
                     returnKeyType="next"
                     blurOnSubmit={false}
