@@ -2,29 +2,29 @@ import React from 'react';
 import { View, Text, StyleSheet, useWindowDimensions } from 'react-native';
 import { useFonts } from 'expo-font';
 import LottieView from 'lottie-react-native';
+import text from '../styles/textStyles';
 
 function Items({ item }) {
   const { width, height } = useWindowDimensions(); // Get dynamic dimensions
 
-  const [fontsLoaded] = useFonts({
-    'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
-  });
-
-  if (!fontsLoaded) {
-    return null;
-  }
+   const [fontsLoaded] = useFonts({
+          'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
+          'PEB' : require('../../assets/fonts/Poppins-ExtraBold.ttf')
+      });
+      if (!fontsLoaded) {
+          return null;
+      }
 
   return (
-    <View style={[styles.container, { width }]}>
+    <View style={[styles.container, { width, padding : width * 0.05,}]}>
       <LottieView
         source={item.animation} 
         autoPlay
         loop={true}
-        style={styles.animation}
+        style={{width : width * 0.9, height : height * 0.25,}}
       />
-      <View style={{ flex: 0.6 }}>
-        <Text style={[styles.text, { paddingHorizontal: width * 0.16, fontSize: width * 0.05, color : 'black' }]}>{item.text}</Text>
-      </View>
+      <Text style={[text.mediumExtraBold, { fontSize: width * 0.05, color : 'black' }]}>{item.text}</Text>
+      
     </View>
   );
 }
@@ -34,17 +34,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
-  },
-  text: {
-    fontFamily: 'Poppins-Medium',
-    fontWeight: '300',
-    color: 'white',
-    textAlign: 'center',
-  },
-  animation: {
-    width: 300,
-    height: 300,
+
   },
 });
 

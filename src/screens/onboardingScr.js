@@ -3,7 +3,8 @@ import { FlatList, SafeAreaView, StyleSheet, View, Animated, Image, TouchableOpa
 import Items from '../components/items';
 import slides from './slides';
 import Paginator from '../components/paginator.js';
-import { LinearGradient } from 'expo-linear-gradient';
+import colors from '../styles/colors/colors.js';
+import { useFonts } from 'expo-font';
 
 
 
@@ -30,9 +31,18 @@ function Onboard({navigation}) {
     }
   }
 
+
+   const [fontsLoaded] = useFonts({
+        'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'PEB' : require('../../assets/fonts/Poppins-ExtraBold.ttf')
+    });
+    if (!fontsLoaded) {
+        return null;
+    }
+
   return (
     <View style={{flex : 1}}>
-      <SafeAreaView style={styles.safeArea}>
+      <SafeAreaView style={{flex: 1, justifyContent: 'center',alignItems: 'center',backgroundColor : colors.primary}}>
         <FlatList
           data={slides}
           renderItem={({ item }) => <Items item={item} />}
@@ -53,15 +63,15 @@ function Onboard({navigation}) {
 
         <View style={styles.bottom}>
           <Paginator data={slides} scrollX={scrollX} />
-          <TouchableOpacity onPress={scrollTo} style={styles.imgContainer}>
-            <View style={{width : width * 0.16, height : height * 0.08, backgroundColor : '#ffffff', borderRadius : width * 0.2, justifyContent : 'center', alignItems : 'center'}}>
+          <TouchableOpacity onPress={scrollTo} style={{marginLeft : width * 0.1}}>
+            <View style={{width : width * 0.15, height : height * 0.074, backgroundColor : colors.white, borderRadius : width * 0.2, justifyContent : 'center', alignItems : 'center', elevation : 10}}>
             <Image
               source={
                 currentIndex === slides.length - 1
                   ? require('../../assets/icons/next.png')
                   : require('../../assets/icons/next.png')
               }
-              style={{width : width * 0.15, height : height * 0.15, resizeMode : 'contain'}}
+              style={{width : width * 0.1, height : height * 0.1, resizeMode : 'contain'}}
             />
             </View>
           </TouchableOpacity>
@@ -77,23 +87,11 @@ const styles = StyleSheet.create({
   gradient: {
     flex: 1,
   },
-  safeArea: {
-    flex: 1, // Adjusted to make the SafeAreaView fill the available space
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  img: {
-    width: 90,
-    height : 90,
-    resizeMode: 'contain',
-    marginLeft : 20
-  
-  },
   bottom : {
     flexDirection : 'row',
     alignItems : 'center',
     justifyContent: 'space-between',
-    marginBottom : 30
+    marginBottom : 30,
   }
 
 });
