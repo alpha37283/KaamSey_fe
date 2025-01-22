@@ -92,3 +92,46 @@ issue solution
 =>> now images are being fetched directly from api, not asnc change this back to asyn and upload smaller images
 
 # Unable to test for notification becuase not implemented at backend
+
+# ########################### app.json
+
+// {
+// "expo": {
+// "name": "job-find-app_fe",
+// "slug": "job-find-app_fe",
+// "version": "1.0.0",
+// "orientation": "portrait",
+// "icon": "./assets/icon.png",
+// "userInterfaceStyle": "light",
+// "newArchEnabled": true,
+// "splash": {
+// "image": "./assets/splash-icon.png",
+// "resizeMode": "contain",
+// "backgroundColor": "#ffffff"
+// },
+// "ios": {
+// "supportsTablet": true
+// },
+// "android": {
+// "adaptiveIcon": {
+// "foregroundImage": "./assets/adaptive-icon.png",
+// "backgroundColor": "#ffffff",
+// "permissions": [
+// "CAMERA"
+// ]
+// },
+// "package": "com.codew.jobfindapp_fe"
+// },
+// "web": {
+// "favicon": "./assets/favicon.png"
+// },
+// "plugins": [
+// "expo-font"
+// ],
+// "extra": {
+// "eas": {
+// "projectId": "83ffcbc8-37c6-41e8-82bd-ec8f0d28c1a4"
+// }
+// }
+// }
+// }

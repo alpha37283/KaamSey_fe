@@ -35,15 +35,14 @@ import UserProfileSetting from './src/screens/userProfileSetting';
 import CreateService from './src/screens/createService';
 import CreateServiceOverview from './src/screens/createdServiceOverview';
 
+import ServiceCard from './src/components/serviceCard';
 
 const Stack = createNativeStackNavigator();
 
 
 function App() {
   return (
-    <NavigationContainer>
-      <BottomTabsBar></BottomTabsBar>
-    </NavigationContainer>
+    <ServiceCard/>
   );
 }
 
