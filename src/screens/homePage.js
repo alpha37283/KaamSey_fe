@@ -101,9 +101,14 @@ function HomePage() {
           <Text style={[text.mediumExtraBold,{ fontSize: width * 0.08,  color: '#000' }]}>{seller.name}</Text>
           <Text style={[text.mediumExtraBold,{ fontSize: width * 0.08, color: '#4CAF50', marginTop : width * -0.01 }]}>Welcome Back</Text>
         </View>
-        <View style={{ backgroundColor : 'white', borderRadius : width * 0.2, width : width * 0.17, height : width * 0.17, justifyContent : 'center', alignItems : 'center' }}>
-          <Image source={{uri : profileImage}} style={{ width: width * 0.17, height: height * 0.17, borderRadius : width * 0.2}} />
-        </View>
+        <View style={{ backgroundColor: 'white', borderRadius: width * 0.17, width: width * 0.2, height: width * 0.085, justifyContent: 'center', alignItems: 'center' }}>
+  {profileImage ? (
+    <Image source={{ uri: profileImage }} style={{ width: width * 0.17, height: height * 0.085, borderRadius: width * 0.2 }} />
+  ) : (
+    <Image source={require('../../assets/icons/profileIcon.png')} style={{ width: width * 0.17, height: height * 0.085, borderRadius: width * 0.2 }} />
+  )}
+</View>
+
       </View>
     </View>
     <EarningCard totalIncome={seller.income.total}/>

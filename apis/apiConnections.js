@@ -10,6 +10,8 @@ const {fetchChatListAndStore, fetchMessagesAndStore} = fetchChatData;
 const signUpSeller = async (name, email, password, navigation) => {
 
     console.log(name, " ", email, " ", password);
+
+//   console.log(`${LOCAL_HOST}`);
   
     if(email == '' || password == '' || name == '')
       {
@@ -35,7 +37,7 @@ const signUpSeller = async (name, email, password, navigation) => {
         if (data.success) {
           console.log('Success', 'SingUp successful');
           const _id = data.seller._id;
-//          console.log(_id, ' is the id at signup saving to async. . . . . ');
+//        console.log(_id, ' is the id at signup saving to async. . . . . ');
           storeAsyncData('user_id', _id);
           await getSellerAndStore({_id});
           navigation.navigate('AddMoreInfo');
@@ -57,6 +59,7 @@ const signUpSeller = async (name, email, password, navigation) => {
   const loginSeller = async (email, password) => {
       
       console.log(email,password);
+//    console.log(`${LOCAL_HOST}`);
   
       if(email == '' || password == '')
       {

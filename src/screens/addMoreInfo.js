@@ -51,17 +51,17 @@ export default function AddMoreInfo({navigation}) {
                 }
             };
 
-        const printInfo = () => {
-            console.log('Number => ',number);
-            console.log('Location => ', location)
-            console.log('Code => ', selectCode)
-            console.log('Profile => ', profile)
-        }
+        // const printInfo = () => {
+        //     console.log('Number => ',number);
+        //     console.log('Location => ', location)
+        //     console.log('Code => ', selectCode)
+        //     console.log('Profile => ', profile)
+        // }
 
         const triggerUpload = async () => {
             if(location === '' || number === '' || profile === null)
             {
-                printInfo();
+            //    printInfo();
                 return ;
             }
             
@@ -77,8 +77,11 @@ export default function AddMoreInfo({navigation}) {
         <View style={{padding : width * 0.05}}>
            <View>
                 <View>
-                    <View>
+                    <View style={{justifyContent : 'space-between', flexDirection : 'row'}}>
                         <Image source={require('../../assets/icons/back.png')} style={{tintColor:'black', width : width * 0.06, height : height * 0.04}}></Image>
+                        <TouchableOpacity style={{alignItems : 'center', justifyContent : 'center',borderColor : colors.quad, borderWidth : 1, borderRadius : width * 0.05, padding : width * 0.02}} onPress={()=>{navigation.navigate('LoginPage')}}>
+                            <Text style={{...text.smallBold, fontSize : width * 0.03,}}>Skip</Text>
+                        </TouchableOpacity>
                     </View>
                         <View style={{marginTop : height * 0.01}}>
                             <Text style={text.mediumBold}>Add More Info</Text>
@@ -151,13 +154,13 @@ export default function AddMoreInfo({navigation}) {
                 </View>
            </View>
 
-            <View style={{justifyContent: 'center', alignItems : 'center', marginTop: height * 0.1}}>
+            <View style={{justifyContent: 'center', alignItems : 'center', marginTop: height * 0.1,}}>
                 <TouchableOpacity style={[{width : width * 0.8, height : height * 0.06, borderRadius : width * 0.1, justifyContent:'center',}]} onPress={triggerUpload} >
                         <LinearGradient
                         colors={[colors.primary, colors.secondary]}
                         start={{ x: 0, y: 0 }}
                         end={{ x: 1, y: 0 }}
-                        style={{flex: 1, borderRadius: 10,justifyContent: 'center', alignItems: 'center',  }}
+                        style={{flex: 1, borderRadius: 10,justifyContent: 'center', alignItems: 'center', borderRadius : width * 0.1}}
                         >
                         <Text style={[text.smallBold,{ textAlign: 'center', color : '#FFFFFF', letterSpacing : 1}]}>Continue</Text>
                         </LinearGradient>

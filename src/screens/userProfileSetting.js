@@ -76,7 +76,7 @@ export default function UserProfileSetting() {
             profilePicture: profile, 
             };
             
-            console.log('Updated seller is : ===================================> ', updatedSeller)
+//            console.log('Updated seller is : ===================================> ', updatedSeller)
             await storeAsyncData('seller', updatedSeller); 
             setSeller(updatedSeller); 
         
@@ -147,7 +147,7 @@ const [fontsLoaded] = useFonts({
                       {profile ? (
                             <Image source={{ uri: profile }} style={{width : width * 0.25, height : height * 0.13, borderRadius : width * 0.15, marginTop : height * 0.12 }}/>
                         ) : (
-                            <Image source={require('../../assets/icons/icnAddImage.png')} style={{width : width * 0.25, height : height * 0.13, borderRadius : width * 0.15, marginTop : height * 0.12, resizeMode : 'contain'}}/>
+                            <Image source={require('../../assets/icons/profileIcon.png')} style={{width : width * 0.2, height : height * 0.1, borderRadius : width * 0.15, marginTop : height * 0.12, resizeMode : 'contain'}}/>
                         )}
                 </TouchableOpacity>
                 <Text style={[text.mediumExtraBold,{marginTop : height * 0.015}]}>{name}</Text>

@@ -65,20 +65,18 @@ if (!services) {
   );
 }
 
+
+
 const filterOrders = services.filter((service) => service.status === activeTab)
   
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.tertiary}}>
-      <View style={{padding: width * 0.05}}>
-        <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03}}>Orders</Text>
-        <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: 25, padding: 8}}>
-          <Image source={require('../../assets/icons/icnSearch.png')} style={{width : width * 0.07, height : height * 0.04, tintColor : 'white'}}/>
-          <TextInput placeholder="Search" placeholderTextColor="white" style={{padding : width * 0.03}}/>
-        </View>
-      </View>
+    <View style={{padding: width * 0.05,  alignItems : 'center', justifyContent : 'center',height : height * 0.15, marginTop : height * 0.02}}>
+            <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03}}>Orders</Text>
+    </View>
       
-      <View style={{backgroundColor : 'white',flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1}}>
+      <View style={{backgroundColor : 'white',flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1,}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop : width * 0.09, paddingHorizontal: width * 0.02}}>
             {['Pending', 'Completed', 'Cancelled'].map((tab) => (
               <TouchableOpacity
@@ -116,4 +114,7 @@ const styles = StyleSheet.create({
 });
 
 
-// the most optimal code 
+{/* <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: 25, padding: 8}}>
+<Image source={require('../../assets/icons/icnSearch.png')} style={{width : width * 0.07, height : height * 0.04, tintColor : 'white'}}/>
+<TextInput placeholder="Search" plsaceholderTextColor="white" style={{padding : width * 0.03}}/>
+</View> */}

@@ -9,8 +9,8 @@ const uploadUserProfileSetting = async (data) => {
       if (!id) throw new Error('User ID not found in AsyncStorage.');
   
       console.log('ID at the profileSettingUpload:', id);
-  
-
+      
+      
       const payload = {
         name: data.name,
         location: data.city,
@@ -23,7 +23,8 @@ const uploadUserProfileSetting = async (data) => {
       if (data.profilePicture) {
         const uriParts = data.profilePicture.split('.');
         const fileType = uriParts[uriParts.length - 1];
-  
+        
+       // console.log(LOCAL_HOST, ' is the local host');
         const response = await fetch(data.profilePicture);
         const blob = await response.blob();
   
@@ -39,6 +40,8 @@ const uploadUserProfileSetting = async (data) => {
           contentType: `image/${fileType}`,
         };
       }
+
+
   
       // Make API request
       const response = await fetch(`http://${LOCAL_HOST}/api/sellers/${id}`, {

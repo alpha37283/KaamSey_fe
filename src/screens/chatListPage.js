@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, TextInput, StyleSheet, SafeAreaView, useWindowDimensions } from 'react-native';
 import colors from '../styles/colors/colors.js';
+import text from '../styles/textStyles.js';
 
 import userDataStore from '../../asyncStorage/userDataStore.js';
 const {storeAsyncData, getData} = userDataStore;
@@ -17,7 +18,7 @@ function ChatList({ navigation }) {
       try {
        
         const chatListFromAsync = await getData('chatList');  // => fetch list stored on asyncStorage
-        console.log(chatListFromAsync);
+//        console.log(chatListFromAsync);
         const {data} = chatListFromAsync;
         setChatList(data);
       } catch (error) {
@@ -32,7 +33,7 @@ function ChatList({ navigation }) {
   if (chatList.length === 0) {
     return (
       <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Loading chats...</Text>
+        <Text style={{...text.mediumExtraBold}}>You don't have any chats yet!!!</Text>
       </View>
     );
   }

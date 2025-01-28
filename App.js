@@ -42,7 +42,7 @@ const Stack = createNativeStackNavigator();
 
 function App() {
   return (
-    <ServiceCard/>
+    <NavigationMain/>
   );
 }
 
