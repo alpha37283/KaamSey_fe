@@ -6,13 +6,14 @@ import { useFonts } from 'expo-font';
 import EarningCard from '../components/earningCard';
 import IncomeCard from '../components/incomeCard';
 import TotalOrder from '../components/totalOrderCard';
-import NumsOfActiveOrders from '../components/orderCard';
 import ActiveOrders from '../components/activeOrders';
+import NumsOfActiveOrders from '../components/orderCard';
+
 import userDataStore from '../../asyncStorage/userDataStore';
+import fetchSeller from '../../apis/fetchSeller';
+
 import text from '../styles/textStyles';
 import colors from '../styles/colors/colors';
-
-import fetchSeller from '../../apis/fetchSeller';
 
 const {fetchImage} = fetchSeller;
 const {getData} = userDataStore;

@@ -1,30 +1,22 @@
 import React, { useState } from 'react';
 import { View, Text, Image, Dimensions, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback, TouchableOpacity, ScrollView, Modal } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SelectCategory from '../components/selectCategory';
-import text from '../styles/textStyles';
-import colors from '../styles/colors/colors';
+import { ServiceContext } from './context/createServiceContext';
+import { useContext } from 'react';
+
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
 
+import text from '../styles/textStyles';
+import colors from '../styles/colors/colors';
+import SelectCategory from '../components/selectCategory';
 import BottomSelectProfile from '../components/bottomSheetForProfileSelection';
-import { ServiceContext } from './context/createServiceContext';
-import { useContext } from 'react';
 
 const { width, height } = Dimensions.get('window');
 
 export default function CreateService({navigation}) {
-    // const [title, setTitle] = useState('');
-    // const [desc, setDesc] = useState('');
-    // const [category, setCategory] = useState('');
-    // const [tags, setTags] = useState('');
-    // const [hours, setHours] = useState('');
-    // const [workers, setWorkers] = useState('');
-    // const [price, setPrice] = useState('');
-    // const [img, setImg] = useState(null)
-    // const [modalVisible, setModalVisible] = useState(false);
-    
+
     const {
         title,
         setTitle,
@@ -44,27 +36,23 @@ export default function CreateService({navigation}) {
         setImg,
       } = useContext(ServiceContext);
 
-      const [modalVisible, setModalVisible] = useState(false)
-
-
+    const [modalVisible, setModalVisible] = useState(false)
     
-   const [fontsLoaded] = useFonts({
-                'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
-                'PEB' : require('../../assets/fonts/Poppins-ExtraBold.ttf')
-            });
-            if (!fontsLoaded) {
-                return null;
-            }
+    const [fontsLoaded] = useFonts({
+        'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'PEB' : require('../../assets/fonts/Poppins-ExtraBold.ttf')
+    });
+    if (!fontsLoaded) {
+        return null;
+    }
 
+    const pickImage = async () => {
 
-
-      const pickImage = async () => {
-
-      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
-      if (status !== 'granted') {
-          alert('Permission to access the gallery is required!');
-          return;
-      }
+    const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (status !== 'granted') {
+        alert('Permission to access the gallery is required!');
+        return;
+    }
   
       const result = await ImagePicker.launchImageLibraryAsync({
           allowsEditing: true, 
@@ -177,14 +165,3 @@ export default function CreateService({navigation}) {
 const styles = StyleSheet.create({
     inputField: { padding: width * 0.04, borderBottomColor: 'black', backgroundColor: 'white', elevation: 10, borderRadius: width * 0.03, marginTop: height * 0.01, fontSize: width * 0.04 }
 });
-
-
-
-
-
-
-// {profile ? (
-//   <Image source={{}} style={{ width: width * 0.2, height: height * 0.1,resizeMode: 'contain', borderRadius : width * 0.1,}} />
-// ) : (
-//   <Image source={require('../../assets/icons/icnAddImage.png')} style={{ width: width * 0.09, height: height * 0.04, resizeMode: 'contain' }} />
-// )}

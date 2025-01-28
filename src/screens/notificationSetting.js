@@ -39,9 +39,9 @@ export default function NotificationSetting({ navigation }) {
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: colors.fifth }}>
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-                <View style={{ padding: width * 0.03 }}>
-                    <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop : height * 0.03}}>
+            <View>
+                <View style={{ padding: width * 0.04 }}>
+                    <View style={{ flexDirection: 'row', alignItems : 'center', marginTop : height * 0.06, marginBottom : height * 0.02}}>
                         <TouchableOpacity
                             style={{ width: width * 0.09, height: height * 0.045, alignItems: 'center', justifyContent: 'center', borderRadius: width * 0.05, borderColor: 'black', borderWidth: 2 }}
                             onPress={() => navigation.navigate('Settings')}>
@@ -95,7 +95,7 @@ export default function NotificationSetting({ navigation }) {
                     <Divider width={1} color="#CDD1D0" style={{ width: width * 1, alignSelf: 'center' }} />
 
                 </View>
-            </ScrollView>
+            </View>
         </SafeAreaView>
     );
 }

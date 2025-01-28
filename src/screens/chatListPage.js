@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, Image, ScrollView, TextInput, StyleSheet, SafeAreaView, useWindowDimensions } from 'react-native';
+
 import colors from '../styles/colors/colors.js';
 import text from '../styles/textStyles.js';
 
 import userDataStore from '../../asyncStorage/userDataStore.js';
+
 const {storeAsyncData, getData} = userDataStore;
 
 
@@ -17,7 +19,7 @@ function ChatList({ navigation }) {
     const getMessagesFromAsync = async () => {
       try {
        
-        const chatListFromAsync = await getData('chatList');  // => fetch list stored on asyncStorage
+        const chatListFromAsync = await getData('chatList');  
 //        console.log(chatListFromAsync);
         const {data} = chatListFromAsync;
         setChatList(data);
@@ -40,22 +42,18 @@ function ChatList({ navigation }) {
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.tertiary}}>
-      <View style={{padding: width * 0.05, marginTop : height * 0.02}}>
-              <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03, marginTop : height * 0.03}}>Chat</Text>
-              <View style={{flexDirection: 'row', alignItems: 'center', backgroundColor: 'rgba(255, 255, 255, 0.1)', borderRadius: 25, padding: 8}}>
-                <Image source={require('../../assets/icons/icnSearch.png')} style={{width : width * 0.07, height : height * 0.04, tintColor : 'white'}}/>
-                <TextInput placeholder="Search" placeholderTextColor="white" style={{padding : width * 0.03}}/>
-              </View>
+      <View style={{padding: width * 0.05,  alignItems : 'center', justifyContent : 'center',height : height * 0.15, marginTop : height * 0.02}}>
+                  <Text style={{...text.largeExtraBold ,fontSize: 24, fontWeight: 'bold', color: 'white', marginTop : height * 0.05}}>Chat</Text>
       </View>
       
       <ScrollView
-  style={{ flex: 1, borderTopLeftRadius: width * 0.1, borderTopRightRadius: width * 0.1, backgroundColor: 'white' }}
+  style={{ flex: 1, borderTopLeftRadius: width * 0.1, borderTopRightRadius: width * 0.1, backgroundColor: colors.fifth, padding : width * 0.04, marginTop : height * 0.043}}
 >
   {chatList.map((chat) => {
    
     const hardCodeImages = {
       Atif: require('../../assets/images/atif.jpg'),
-      Zoha: require('../../assets/images/zoha.jpg'),
+      Abdullah: require('../../assets/images/sardar.jpg'),
       Kamran: require('../../assets/images/kami.jpg'),
     };
 
@@ -120,25 +118,3 @@ const styles = StyleSheet.create({
 });
 
 export default ChatList;
-
-
-
-// {chatList.map(chat => (
-        
-//   <TouchableOpacity key={chat._id} style={styles.chatItem} onPress={() => navigation.navigate('ChatDetail', { chatId: chat.chatId, name: chat.name, receiverId : chat.receiverId })}>
-
-//     <Image source={chat.avatar} style={{width: width * 0.12, height: height * 0.06 , borderRadius: width * 0.07, backgroundColor : 'orange'}} />
-//     <View style={{flex: 1, marginLeft: 16}}>
-//       <Text style={{fontSize: 16, fontWeight: '600', color: '#333'}}>{chat.name}</Text>
-//       <Text style={{color: '#666', marginTop: 4}}>{chat.lastMessage}</Text>
-//     </View>
-//     <View style={{alignItems: 'flex-end'}}>
-//       <Text style={{color: '#999', fontSize: 12}}>{chat.timestamp}</Text>
-//       {chat.unread > 0 && (
-//         <View style={styles.unreadBadge}>
-//           <Text style={{color: 'white', fontSize: 12}}>{chat.unread}</Text>
-//         </View>
-//       )}
-//     </View>
-//   </TouchableOpacity>
-//   ))}

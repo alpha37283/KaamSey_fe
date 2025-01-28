@@ -6,7 +6,7 @@ import OrderInfoPage from "../../screens/orderInfoPage";
 const Stack = createStackNavigator();
 
 import React from 'react';
-import { NavigationContainer } from "@react-navigation/native";
+
 
 
 export default function OrderStack() {

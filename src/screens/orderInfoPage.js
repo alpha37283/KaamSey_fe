@@ -35,7 +35,7 @@ export default function OrderInfoPage({ route, navigation }) {
       </View>
       <View style={{backgroundColor : 'white',flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1}}>
           <View style={{flexDirection : 'row', alignItems : 'center', padding : width * 0.05, marginLeft : width * 0.02, marginTop : height * 0.02}}>
-            <Image source={require('../../assets/images/kami.jpg')} style={{width : width * 0.2, height : height * 0.1, borderRadius : width * 0.2}}/>
+            <Image source={require('../../assets/icons/profileIcon.png')} style={{width : width * 0.18, height : height * 0.09, borderRadius : width * 0.2}}/>
             <Text style={[text.largeBold, { marginLeft : width * 0.03}]}>{order.buyerName}</Text>
           </View>
           <Divider width={1} color="#CDD1D0" style={{ width: width * 0.88, alignSelf: 'center' }} />

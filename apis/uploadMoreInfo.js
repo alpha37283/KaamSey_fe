@@ -35,9 +35,8 @@ export const uploadMoreInfo = async ({ id, data, navigation }) => {
             };
         }
 
-        console.log(`${id} is at the main send request`);
+//        console.log(`${id} is at the main send request`);
 
-        // Send the request
         const response = await fetch(`http://${LOCAL_HOST}/api/sellers/${id}`, {
             method: 'PATCH',
             headers: {

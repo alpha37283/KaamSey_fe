@@ -10,7 +10,7 @@ export default function OrderCard({ name, description, price, status, onPress })
   return (
     <TouchableOpacity style={[styles.card, {alignItems : 'center', justifyContent : 'flex-start', width : width * 0.94, borderRadius: 10, padding: width * 0.03, marginHorizontal: width * 0.03}]} onPress={onPress}>
       <View style={{alignItems : 'center', justifyContent : 'center', width : width * 0.2, height: height * 0.11,}}>
-        <Image source={require('../../assets/icons/google.png')} style={{width : width * 0.1, height: height * 0.05}} />
+        <Image source={require('../../assets/icons/profileIcon.png')} style={{width : width * 0.1, height: height * 0.05}} />
       </View>
       <View style={{marginLeft : width * 0.01, width : width * 0.65}}>
           <View>

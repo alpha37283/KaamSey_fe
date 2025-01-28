@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, Dimensions, Image } from 'react-native';
-import text from '../styles/textStyles';
-import { TouchableOpacity } from 'react-native';
+import { View, Text, Dimensions, Image, TouchableOpacity } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import colors from '../styles/colors/colors';
 import { useFonts } from 'expo-font';
+
+import text from '../styles/textStyles';
+import colors from '../styles/colors/colors';
+
 const {width, height} = Dimensions.get('window')
 
 export default function ActiveServices({navigation}) {

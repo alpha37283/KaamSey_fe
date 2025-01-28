@@ -27,7 +27,7 @@ const getSellerAndStore = async ({_id}) => {
 
         const { profileImage, ...restOfSellerInfo } = sellerInfo;
 
-        console.log('Rest of seller info =========================> ', restOfSellerInfo);
+//        console.log('Rest of seller info =========================> ', restOfSellerInfo);
 
         
         try{
@@ -106,14 +106,14 @@ const fetchImage = async () => {
       throw new Error(`Failed to fetch image: ${response.status} ${response.statusText}`);
     }
 
-    // For images, handle based on content type
+  
     const contentType = response.headers.get('Content-Type');
     if (contentType && contentType.includes('image')) {
-      const data = await response.blob(); // Fetch as binary blob
-      const imageUri = URL.createObjectURL(data); // Convert to URI
-    //  console.log('Image URI:', imageUri);
+      const data = await response.blob(); 
+      const imageUri = URL.createObjectURL(data); 
+  
     } else {
-      const data = await response.json(); // Fallback for non-image responses
+      const data = await response.json(); 
       
       return data;
     }

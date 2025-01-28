@@ -1,16 +1,19 @@
 import React, { useEffect } from 'react';
 import { View, Text, Image, Dimensions, TouchableOpacity, TextInput, Modal} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useState } from 'react';
-import colors from '../styles/colors/colors'
-import text from '../styles/textStyles';
-import AddContact from '../components/selectListCountryCode';
-import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
 
-const {width, height } = Dimensions.get('window');
+import { useState } from 'react';
+import { useFonts } from 'expo-font';
+
+
 import BottomSelectProfile from '../components/bottomSheetForProfileSelection';
+import AddContact from '../components/selectListCountryCode';
+import colors from '../styles/colors/colors'
+import text from '../styles/textStyles';
+
+const {width, height } = Dimensions.get('window');
 
 import uploadMoreInfo from '../../apis/uploadMoreInfo';
 const {handleUpload} = uploadMoreInfo;

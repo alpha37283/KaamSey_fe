@@ -1,9 +1,10 @@
 import React from 'react';
 import { View, Text, Touchable, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import NavigationActivePaused from '../navigation/navigationActivePaused';
-import text from '../styles/textStyles';
 import {useFonts} from 'expo-font';
+
+import text from '../styles/textStyles';
+import NavigationActivePaused from '../navigation/navigationActivePaused';
 
 const {width, height} = Dimensions.get('window')
 

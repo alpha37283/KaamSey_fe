@@ -6,7 +6,6 @@ import Onboard from '../screens/onboardingScr';
 import LoginPage from '../screens/loginPage';
 import SignUp from '../screens/signUpPage';
 import HomePage from '../screens/homePage';
-import FetchData from '../../apis/checking';
 import BottomTabsBar from '../components/bottomTabs';
 import ChatList from '../screens/chatListPage';
 import MessagePage from '../screens/messagePage';

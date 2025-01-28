@@ -46,9 +46,7 @@ try {
 const sendMessageOnSocket = async (chatId, receiverId, setMessages) => {
     try {
 
-        const messagesFetched = await fetchMessagesAndStore(chatId);
-//      const messagesFromAsync = await getData('messages')
-//      const {data} = messagesFromAsync;
+      const messagesFetched = await fetchMessagesAndStore(chatId);
       console.log('--------------------data-------------------\n\n\n',messagesFetched);
       setMessages(messagesFetched);
   

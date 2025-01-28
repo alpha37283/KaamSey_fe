@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, useWindowDimensions, Image, TouchableOpacity, Pressable,TextInput, Touchable, SafeAreaView, TouchableWithoutFeedback, Keyboard} from 'react-native';
+import React, {  useState } from 'react';
+import { View, Text, useWindowDimensions, Image, TouchableOpacity, TextInput, SafeAreaView, TouchableWithoutFeedback, Keyboard} from 'react-native';
 import {LinearGradient} from 'expo-linear-gradient';
 import { Divider } from 'react-native-elements';
-import text from '../styles/textStyles';
-import apiConnections from '../../apis/apiConnections';
-
 import {useFonts} from 'expo-font';   
 
+import text from '../styles/textStyles';
+import apiConnections from '../../apis/apiConnections';
 import colors from '../styles/colors/colors';
-
 
 
 const {loginSeller} = apiConnections;

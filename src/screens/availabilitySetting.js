@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { View, Text, Image, Dimensions, ScrollView, SafeAreaView, TouchableOpacity, Modal, Switch, StyleSheet} from 'react-native';
+import { View, Text, Image, Dimensions, ScrollView, SafeAreaView, TouchableOpacity, Modal, Switch, StyleSheet, TextInput} from 'react-native';
 import { useFonts } from 'expo-font';
-import colors from '../styles/colors/colors';
-import text from '../styles/textStyles';
-import Calendar from '../components/Calendar';
 import { Divider } from 'react-native-elements';
-import { TextInput } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
+import colors from '../styles/colors/colors';
+import text from '../styles/textStyles';
+
+import Calendar from '../components/Calendar';
 
 const SwitchComp = ({ enabled, setEnabled }) => {
   const toggleSwitch = () => setEnabled(prevState => !prevState);
@@ -56,7 +56,8 @@ export default function AvailabilitySetting({ navigation }) {
     <SafeAreaView style={{ flex: 1, backgroundColor: colors.fifth }}>
       <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
         <View style={{ padding: width * 0.03 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'flex-start', marginTop: height * 0.03 }}>
+          
+            <View style={{ flexDirection: 'row', alignItems : 'center', marginTop : height * 0.06, marginBottom : height * 0.02}}>
             <TouchableOpacity
               style={{
                 width: width * 0.09, height: height * 0.045, alignItems: 'center', justifyContent: 'center',

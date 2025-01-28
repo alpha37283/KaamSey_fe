@@ -1,35 +1,29 @@
 import React, { useState } from 'react';
-import { View, Text, Image, Dimensions, StyleSheet, TextInput, Keyboard, TouchableWithoutFeedback, TouchableOpacity, Modal } from 'react-native';
+import { View, Text, Image, Dimensions, Keyboard, TouchableWithoutFeedback, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SelectCategory from '../components/selectCategory';
-import text from '../styles/textStyles';
-import colors from '../styles/colors/colors';
 import { useFonts } from 'expo-font';
 import { LinearGradient } from 'expo-linear-gradient';
 import * as ImagePicker from 'expo-image-picker';
-import { ScrollView } from 'react-native';
 
-import BottomSelectProfile from '../components/bottomSheetForProfileSelection';
+
 import { ServiceContext } from './context/createServiceContext';
 import { useContext } from 'react';
+
+import text from '../styles/textStyles';
+import colors from '../styles/colors/colors';
 
 const { width, height } = Dimensions.get('window');
 
 export default function CreateServiceOverview({navigation}) {
     const { title, desc, category, tags, hours, workers, price, img } = useContext(ServiceContext);
-    
-
-
-    
-   const [fontsLoaded] = useFonts({
-                'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
-                'PEB' : require('../../assets/fonts/Poppins-ExtraBold.ttf')
-            });
-            if (!fontsLoaded) {
-                return null;
-            }
-
-
+   
+    const [fontsLoaded] = useFonts({
+        'PM': require('../../assets/fonts/Poppins-Medium.ttf'),
+        'PEB' : require('../../assets/fonts/Poppins-ExtraBold.ttf')
+    });
+    if (!fontsLoaded) {
+        return null;
+    }
 
       const pickImage = async () => {
 

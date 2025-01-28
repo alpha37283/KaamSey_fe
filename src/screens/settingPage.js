@@ -62,7 +62,7 @@ export default function SettingPage({navigation}) {
     <View style={{padding: width * 0.05,  alignItems : 'center', justifyContent : 'center',height : height * 0.15, marginTop : height * 0.02}}>
             <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginTop: height * 0.05}}>Settings</Text>
     </View>
-    <View style={{backgroundColor : 'white',flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1, padding : width * 0.07, marginTop : height * 0.043}}>
+    <View style={{backgroundColor: colors.fifth ,flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1, padding : width * 0.07, marginTop : height * 0.043}}>
         <TouchableOpacity style={{flexDirection : 'row', alignItems : 'center'}} onPress={()=>{navigation.navigate('ProfileSetting',  profle)}}>
             <View style={{width : width * 0.18, height : height * 0.09, borderRadius : width * 0.1,elevation : 20}}>
                 <Image source={{uri : profle}} style={{width : width * 0.18, height : height * 0.09, borderRadius : width * 0.1}}/>

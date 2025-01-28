@@ -72,11 +72,11 @@ const filterOrders = services.filter((service) => service.status === activeTab)
 
   return (
     <SafeAreaView style={{flex: 1, backgroundColor: colors.tertiary}}>
-    <View style={{padding: width * 0.05,  alignItems : 'center', justifyContent : 'center',height : height * 0.15, marginTop : height * 0.02}}>
-            <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03}}>Orders</Text>
-    </View>
+      <View style={{padding: width * 0.05,  alignItems : 'center', justifyContent : 'center',height : height * 0.15, marginTop : height * 0.02}}>
+              <Text style={{fontSize: 24, fontWeight: 'bold', color: 'white', marginBottom: height * 0.03}}>Orders</Text>
+      </View>
       
-      <View style={{backgroundColor : 'white',flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1,}}>
+      <View style={{backgroundColor: colors.fifth ,flex : 1, borderTopLeftRadius : width * 0.1, borderTopRightRadius : width * 0.1,}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-around', marginTop : width * 0.09, paddingHorizontal: width * 0.02}}>
             {['Pending', 'Completed', 'Cancelled'].map((tab) => (
               <TouchableOpacity

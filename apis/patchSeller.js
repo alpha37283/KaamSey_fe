@@ -24,7 +24,6 @@ const uploadUserProfileSetting = async (data) => {
         const uriParts = data.profilePicture.split('.');
         const fileType = uriParts[uriParts.length - 1];
         
-       // console.log(LOCAL_HOST, ' is the local host');
         const response = await fetch(data.profilePicture);
         const blob = await response.blob();
   

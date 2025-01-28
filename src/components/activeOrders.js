@@ -7,6 +7,7 @@ import { Divider } from 'react-native-elements';
 
 
 import text from '../styles/textStyles';
+import { ScrollView } from 'react-native';
 
 const ActiveOrders = ({data}) => {
 
@@ -24,10 +25,10 @@ const ActiveOrders = ({data}) => {
           console.log('No data found !!!')
           return ;
         }
-        else
-        {
-          console.log(data);
-        }
+        // else
+        // {
+        //   console.log(data);
+        // }
 
     
   return (
@@ -36,8 +37,9 @@ const ActiveOrders = ({data}) => {
     />
    
 
-      <View style={[styles.whiteCard, { }]}>
-              {data.map((order, index) => {
+      
+           <ScrollView style={{...styles.whiteCard}}>
+           {data.map((order, index) => {
                 return (
                     <View key={index} style={{ justifyContent : 'space-around'}}>
                         <View style={{flexDirection : 'row', justifyContent : 'space-between'}}>
@@ -64,8 +66,9 @@ const ActiveOrders = ({data}) => {
                   </View>  
                 )
               })}
+           </ScrollView>
       </View>
-  </View>
+ 
   );
 };
 
